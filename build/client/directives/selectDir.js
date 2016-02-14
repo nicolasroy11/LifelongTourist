@@ -1,4 +1,4 @@
-angular.module('roomem').directive('matchDir', function()
+angular.module('app').directive('matchDir', function()
 {
   return {
     restrict: 'AECM',
@@ -10,8 +10,8 @@ angular.module('roomem').directive('matchDir', function()
     },
     link: function(scope, elem, attrs)
     {
-        void 0;
-        void 0;
+        console.log('Linking...');
+        console.log(elem);
 
     },
     transclude: true,

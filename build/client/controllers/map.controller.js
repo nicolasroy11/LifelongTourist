@@ -1,5 +1,6 @@
-roomem.controller("mapController", function($scope, uiGmapGoogleMapApi) {
-
+app.controller("mapController", function($scope, uiGmapGoogleMapApi) {
+  
+  // Define variables for our Map object
   var areaLat      = 40.1451,
       areaLng      = -99.6680,
       areaZoom     = 7;
@@ -23,5 +24,13 @@ roomem.controller("mapController", function($scope, uiGmapGoogleMapApi) {
     				icon:'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/images/m2.png'
     			});
     $scope.hoodMarkers = markers;
+    // $scope.marker = {
+				// 	   id: 0,
+				// 	   coords: 
+				// 	   {
+				// 			latitude: 40.1451,
+				// 			longitude: -99.6680
+				// 	   }
+  		// 			}
   		 		});
 });

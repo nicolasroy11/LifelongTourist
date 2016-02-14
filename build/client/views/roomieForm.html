@@ -1,16 +1,42 @@
+<!-- <div ng-include src="'views/menu_template.html'"></div> -->
+<!-- <div ui-view="top-menu"></div>
+<div ui-view="dev-menu"></div> -->
+<!-- <div ng-include src="'views/dev_menu_template.html'"></div> -->
+<!-- <div class="list-group">
+	<test-dir var1="{{ thread }}" var2="person" formatted-person="formattedP(person)" ng-repeat="thread in person.threads">
+		<test-dir var1="{{ thread }}" var2="person" formatted-person="formattedP(person)" ng-repeat="thread in person.threads"></test-dir>
+	</test-dir>
+</div> -->
 
 <section id="roomie-fields">
 <div class="container-fluid" >
 	<div class="row roomie-form">
 		<h3>step 1: your profile</h3>
+		<!-- {{person}} -->
 			<div class="col-sm-4">
+				<!-- <form>
+    				<input type="file" name="photo" file-model="person.profile.photoURL">
+					<div class="photo-upload">
+						<input type="file" file-model="person.profile.photoURL"></input>
+					</div>
+					<button type="submit" class="btn btn-default" ng-click="upload()">Upload</button>
+				</form> -->
+
+			<!-- <form> -->
+			<!-- <form action="/upload" enctype="multipart/form-data" method="post"> -->
+				<!-- Add a title: 
+				<input name="title" type="text" /><br><br>
+				<input multiple="multiple" name="upload" type="file" /><br><br>
+				<input type="submit" value="Put it up!" />
+				<button class="btn btn-primary" ng-click="upload()">Upload<span class="glyphicon glyphicon-log-in"></span></button> -->
+			<!-- </form> -->
 
 
+			
+			<!-- <img src="/img/images.jpeg"/> -->
+			
 
-
-
-
-						<h4>Move in date</h4>
+			<h4>Move in date</h4>
 		    <div class="row" ng-controller="datePickerCtrl">
 		        <div class="col-md-6">
 		            <p class="input-group">
@@ -29,6 +55,7 @@
 			<div class="col-sm-4" >
 				<input class="form-control" ng-model="person.meta.email"></input>
 				<input type="text" placeholder="name" class="form-control" ng-model="person.profile.name"></input><br>
+				<!-- <input type="text" placeholder="email" class="form-control" ng-model="person.meta.email"></input><br> -->
 
 				<select ng-model="person.primary.couple">
 					<option value="" disabled selected>Are you sharing a room with someone?</option>
@@ -96,7 +123,7 @@
 				</div>
 				<div class="col-sm-4 submit-option">
 					<input type="submit" value="save and finish later"></input>
-<br>OR<br><br>
+					<!-- <div>save and finish<br> later<br> --><br>OR<br><br>
 					<button class="btn btn-primary" ng-click="updatePrimary()">on to step 2<span class="glyphicon glyphicon-log-in"></span></button>
 				</div>
 			</div>

@@ -1,4 +1,4 @@
-angular.module('roomem').service('ModalSvc', ['$uibModal', '$log', '$location',
+angular.module('app').service('ModalSvc', ['$uibModal', '$log', '$location',
 function($uibModal, $log, $location)
 {
 	this.open = function(size, authMethod)
@@ -13,6 +13,7 @@ function($uibModal, $log, $location)
 
 		modalInstance.result.then(function ()
 		{
+			// $scope.selected = selectedItem;
 		},
 		function()
 		{

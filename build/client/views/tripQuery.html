@@ -1,0 +1,59 @@
+<table class="table" > <!-- ng-controller="itemieCtrl" -->
+	<thead>
+		<th>Tourist Name<br>Tourist ID</th>
+		<th>From date<br>To date</th>
+		<th>Description</th>
+		<th>Destinations</th>
+		
+		<th>Action</th>
+		<th>&nbsp;</th>
+	</thead>
+	<tbody>
+		<tr>
+			<!-- The following set of fields actually create a 'item' model
+			in cache memory by defining its members with 'item.(member)'. When you hit the button,
+			you call the controller function that communicates the info to the db. -->
+			<td>
+				<input class="form-control" ng-model="item.Tourists[0]._id"></input>
+				<input class="form-control" ng-model="item.Tourists[0].Name"></input>
+			</td>
+			
+			<td>
+				<input class="form-control" ng-model="item.fromDate"></input>
+				<input class="form-control" ng-model="item.toDate"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="item.desc"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="item.destinations"></input>
+			</td>
+			
+			<td><button class="btn btn-primary" ng-click="add()">Add item</button></td>
+			<td><button class="btn btn-info" ng-click="update()">Update</button></td>
+		</tr>
+		<!-- The following fields display the contents of a db query done in server.js -->
+		<tr ng-repeat="trip in list">
+			<td>
+				trip ID: {{trip._id}}<br>
+				{{trip.destinations.city}}<br>
+				{{trip.destinations.country}}<br>
+			</td>
+			<td>
+				{{trip.destinations.fromDate}}<br>
+				{{trip.destinations.toDate}}
+			</td>
+			<td>
+				{{trip.desc}}
+			</td>
+			<td>
+				{{trip.destinations}}<br>
+			</td>
+
+			
+			<!-- <td>{{item.number.cell}}</td> -->
+			<td><button class="btn btn-danger" ng-click="remove(trip._id)">Remove</button></td>
+			<td><button class="btn btn-warning" ng-click="edit(trip._id)">Edit</button></td>
+		</tr>
+	</tbody>
+</table>

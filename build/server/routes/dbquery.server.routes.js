@@ -1,61 +1,97 @@
+// This file is the routes used by admin to verify proper roomie collections operations
 var mongoose = require('mongoose');
-Roomie = require('../models/roomie.server.model');
+// Tourist = require('../models/tourist.server.model');
+// Trip = require('../models/trip.server.model');
+// Thread = require('../models/thread.server.model');
 
 module.exports = function(app)
 {
 
-	app.get('/roomieList', function(req,res)
+	app.get('/list/:item', function(req,res)
 	{
-		void 0;
-		Roomie.find(function(err, person) {
-		if (err) return void 0;
-		void 0;
-		res.json(person);
+		console.log("Got a GET request in list: ");
+		console.log(req.params);
+		var _item = require('../models/' + req.params.item + '.server.model');
+
+
+		_item.find(function(err, i)
+		{
+			if (err) return console.error(i);
+			console.log(i);
+			res.json(i);
 		});
 	});
 
-	app.delete('/roomieList/:id', function(req,res)
+	app.post('/list', function(req,res)
+	{
+		console.log('post request in /list: ');
+		console.log(req.body);
+		item = req.body.item;
+		var _item = require('../models/' + item + '.server.model');
+		var model = new _item(req.body.data);
+		console.log("model is: " + model);
+		model.save(function(err, i)
+		{
+		  if (err) return console.error(err);
+		  console.log('This is the tourist id: ' + i._id);
+		  res.json(i);
+		});
+	});
+
+	app.delete('/list/:item/:id', function(req,res)
 	{
 		var id = req.params.id;
-		void 0;
-		Roomie.remove({_id: mongoose.Types.ObjectId(id)}, function(err, doc)
+		console.log("Got a GET request in list: ");
+		console.log(id);
+		var _item = require('../models/' + req.params.item + '.server.model');
+		_item.remove({_id: mongoose.Types.ObjectId(id)}, function(err, doc)
 		{
 			res.json(doc);
 		});
 	});
 
-	app.get('/roomieList/:id', function(req,res)
+	// edit
+	app.get('/list/:item/:id', function(req,res)
 	{
 		var id = req.params.id;
-		void 0;
-		Roomie.findOne({_id: mongoose.Types.ObjectId(id)}, function(err, doc) {
-		  if (err) return void 0;
-		  void 0;
+		var _item = require('../models/' + req.params.item + '.server.model');
+		console.log("Got an edit request for: ");
+		console.log(id);
+		_item.findOne({_id: mongoose.Types.ObjectId(id)}, 
+		function(err, doc)
+		{
+		  if (err) return console.error(err);
+		  console.log(doc);
 		  res.json(doc);
 		});
 	});
 
-	app.post('/roomieList', function(req,res)
+	
+	app.post('/list', function(req,res)
 	{
-		var roomie = new Roomie(req.body);
-
-		roomie.save(function(err, roomie) 
+		var item = new Roomie(req.body);
+		var _item = require('../models/' + req.params.item + '.server.model');
+		item.save(function(err, doc) 
 		{
-		  if (err) return void 0;
-		  void 0;
-		  res.json(roomie);
+		  if (err) return console.error(err);
+		  console.log('This is the id: ' + doc._id);
+		  res.json(doc);
 		});
 	});
 
-	app.put('/roomieList/:id', function(req,res)
+	// update
+	app.put('/roomieList/:item/:id', function(req,res)
 	{
 		var id = req.params.id;
-		Roomie.findOneAndUpdate(
+		var _item = require('../models/' + req.params.item + '.server.model');
+		_item.findOneAndUpdate(
 			{_id: mongoose.Types.ObjectId(id)},
-
 			{
-				$set: 	
+				$set:
 				{
+					// key needs quotes if nested
+					// username: req.body.username,// "number.cell": req.body.number.cell
+					// snumber: {home:"12345", cell:"56789"}
 					meta: req.body.meta,
 					primary: req.body.primary,
 					profile: req.body.profile,
@@ -63,12 +99,13 @@ module.exports = function(app)
 				}
 			},
 
+			// What we do once we've done our modifications
 			function(err, doc)
 			{
 				res.json(doc);
-				void 0;
+				console.log(doc);
 			});
-		void 0;	
+		console.log("route reaches server side");	//req.body
 	});
 
 }

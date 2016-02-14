@@ -3,7 +3,7 @@ var passport = require('passport'),
 
 module.exports = function()
 {
-	var Roomie = mongoose.model('Roomie');
+	var Tourist = mongoose.model('Tourist');
 
 	passport.serializeUser(function(user, done)
 	{
@@ -12,12 +12,15 @@ module.exports = function()
 
 	passport.deserializeUser(function(id, done)
 	{
-		Roomie.findOne({_id: id}, '-password -salt', function(err, user)
+		// When a user is authenticated, Passport will save its _id property to the session
+		// however, per the second argument, Mongoose won't fetch the user's password and salt properties
+		Tourist.findOne({_id: id}, '-password -salt', function(err, user)
 		{
-			void 0;
+			console.log('deserialized: ' + user);
 			done(err, user);
 		});
 	});
 
+	// Include our local strategy file so server.js file will load
 	require('./strategies/local.js')();
 };

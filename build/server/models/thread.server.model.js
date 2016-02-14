@@ -51,7 +51,9 @@ var ThreadSchema = new Schema(
 
 ThreadSchema.set('toJSON', {getters: true, virtuals: true});
 
+// roomieSchema.plugin(passportLocalMongoose);
 
+// This step actually creates a collection in the db.
 var Thread = mongoose.model("Thread", ThreadSchema);
 
 module.exports = Thread;

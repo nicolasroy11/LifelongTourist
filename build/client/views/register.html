@@ -1,6 +1,6 @@
 <div class="auth-modal">
   <h1>Welcome!</h1>
-  <h4>Please sign up so that we can keep you up to date with potential roommates that match what you're looking for!</h4>
+  <h4>Have great travel stories? Register and share them with us!</h4>
   <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
   <form class="form" ng-submit="signup()">
     <div class="form-group">
@@ -13,7 +13,11 @@
       </div>
       <div>
         <button type="submit" class="btn btn-warning" ng-disabled="disabled">Get Started!</button>
+        <!-- <div class="modal-footer"> -->
+            <!-- <button class="btn btn-primary" type="button" ng-click="ok()">OK</button> -->
             <button class="no-button" type="button" ng-click="cancel()">sign up later</button>
+        <!-- </div> -->
       </div>
   </form> 
+  <!-- <input type='button' class="btn btn-default" ng-click="signinButton()">Log In</button> -->
 </div>

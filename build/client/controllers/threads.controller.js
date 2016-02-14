@@ -1,10 +1,13 @@
-angular.module('roomem').controller('threadsCtrl', 
+// This controller handles all messaging. The reason for the use of rootscope is that this controller
+// may be called on in two different areas and have to share data across the two different instances.
+angular.module('app').controller('threadsCtrl', 
 ['$scope', '$http', '$location', 'UpdateSvc', 'QuerySvc', 'Pagination', '$rootScope', 'socketio', '$sessionStorage',
 function($scope, $http, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, socketio, $sessionStorage)
 {
 	$rootScope.pagination = Pagination.getNew(7);
 	$scope.isCollapsed = true;
-
+	
+		// uid = $sessionStorage.user._id;
 	var refresh = function()
 	{
 		if ( $sessionStorage.session )
@@ -36,6 +39,7 @@ function($scope, $http, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, 
 				$rootScope.threads[i].id = $sessionStorage.threads[i]._id;
 				$rootScope.threads[i].lastSender = $sessionStorage.threads[i].messages[numOfMsg].senderName;
 				$rootScope.threads[i].lastExcerpt = $sessionStorage.threads[i].messages[numOfMsg].message.substring(0, 21) + '...';
+				// Mail distribution
 				switch(checkName($rootScope.threads[i].lastSender))
 				{
 				    case 'self':
@@ -48,28 +52,32 @@ function($scope, $http, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, 
 				}
 				$rootScope.numThreads = $rootScope.inbox.length;
 
+				// console.log("$rootScope.threads[" + i + "].id: " + JSON.stringify($rootScope.threads[i].lastDate));
 			}
 
-			void 0;
-			void 0;
-			void 0;
-			void 0;
-
-					}
+			console.log('threads, inbox and sent: ');
+			console.log($rootScope.inbox.length);
+			console.log($rootScope.sent.length);
+			console.log($sessionStorage.threads.length);
+			
+		}
 	}
 	refresh();
 
+	// This watches any change in sessionStorage.session
+	// to refresh the contents of the threads dropdown
 	$scope.$watch(function()
 	{
 		return $sessionStorage.session;
 	},
 	function(newVal, oldVal)
 	{
-		void 0;
+		console.log("The web storage has changed");
 		refresh();
 	},
 	true);
 
+	// Check if someone is logged in for the greeting banner
 	$scope.check = function()
 	{
 		if($sessionStorage.session)
@@ -90,11 +98,11 @@ function($scope, $http, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, 
 		return name;
 	}
 
-	$rootScope.checked = false; 
+	$rootScope.checked = false; // This will be binded using the ps-open attribute
     $rootScope.toggle = function()
     {
         $rootScope.checked = !$rootScope.checked;
-        void 0;
+        console.log($rootScope.singleThread);
     }
 
 	$scope.displaySingle = function(msgType, index)
@@ -111,13 +119,14 @@ function($scope, $http, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, 
 		        break;
 		    default:
 		}
-		void 0;
-		void 0;
+		console.log('id: ');
+		console.log(msg[index]._id);
 
 		$rootScope.singleThreadIndex = index;
-		$rootScope.singleThread = msg[index]; 
+		$rootScope.singleThread = msg[index]; //$rootScope.messages[index]; $sessionStorage.user.threads
 		for (i in $rootScope.singleThread.messages)
 		{
+			// $rootScope.singleThread[i].sender = checkName($rootScope.singleThread[i].sender.messages[i].senderName);
 			var d = new Date($rootScope.singleThread.messages[i].created);
 			var year = d.getUTCFullYear(),
 				month = d.getUTCMonth() + 1,

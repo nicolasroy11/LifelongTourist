@@ -1,4 +1,5 @@
-angular.module('roomem')
+// This controller handles pre-modal-opening functions. They are used to call the modal
+angular.module('app')
 .controller('authCtrl', 
 ['$http', '$scope', '$uibModal', '$log', '$location', 'SessionSvc', '$sessionStorage',
 function($http, $scope, $uibModal, $log, $location, SessionSvc, $sessionStorage)
@@ -20,7 +21,7 @@ function($http, $scope, $uibModal, $log, $location, SessionSvc, $sessionStorage)
 		modalInstance.result.then(function (selectedItem)
 		{
 			$scope.selected = selectedItem;
-			void 0;
+			console.log('modalInstance $scope.person: ' + JSON.stringify($scope.selected));
 		},
 		function()
 		{
@@ -28,6 +29,7 @@ function($http, $scope, $uibModal, $log, $location, SessionSvc, $sessionStorage)
 		});
 	};
 
+	// For testing purposes
 	$scope.add3 = function(val)
 	{
 		return val + 3;
@@ -38,31 +40,39 @@ function($http, $scope, $uibModal, $log, $location, SessionSvc, $sessionStorage)
 		open('md', 'register');
 	}
 
+	// When user hits "log in" button
 	$scope.signinButton = function()
 	{
 		open('md', 'login');
 	}
 
+	// When user hits "log out" button
 	$scope.signoutButton = function()
 	{
 		$http.get('/signout').then(function(response)
 		{
-			void 0;
+			console.log('signout success!');
 			SessionSvc.invalidate();
-			void 0;
+			console.log('session valid: ' + $sessionStorage.session);
 		});
 	}
 
+	// if ($location.$$path === '/')
+	// {
+	// 	open('lg', 'register');
+	// }
 	$scope.check = function()
 	{
 		if($sessionStorage.session)
 		{	
 			$scope.name = $sessionStorage.user.profile.name === 'name pending' ? 'new user' : $sessionStorage.user.profile.name;
+			// console.log("auth controller (session = true): " + $scope.name);
 			return true;
 		}
 		else
 		{
 			$scope.name = '';
+			// console.log("auth controller (session = false): " + $scope.name);
 			return false;
 		}
 	};
@@ -75,20 +85,27 @@ function($http, $scope, $uibModal, $log, $location, SessionSvc, $sessionStorage)
 
 
 
-angular.module('roomem').controller('ModalInstanceCtrl', ['$location', '$http', '$scope', '$uibModalInstance', 'SessionSvc',
+// This controller handles post-modal functions that are called inside the open modal
+angular.module('app').controller('ModalInstanceCtrl', 
+	['$location', '$http', '$scope', '$uibModalInstance', 'SessionSvc',
 	function($location, $http, $scope, $uibModalInstance, SessionSvc)
 	{
 
+	// $scope.ok = function () {
+	//   $uibModalInstance.close($scope.person);
+	// };
 
 	$scope.cancel = function()
 	{
 		$uibModalInstance.dismiss('cancel');
 	};
 
+	// User's signup method
 	$scope.signup = function()
 	{
-		void 0;
-		$http.post('/signup', $scope.person).then(function(response)
+		console.log('hit signup button');
+		$http.post('/signup', $scope.person)
+		.then(function(response)
 		{
 			if (response.data.success === false)
 			{
@@ -102,28 +119,31 @@ angular.module('roomem').controller('ModalInstanceCtrl', ['$location', '$http', 
 				SessionSvc.validate(response.data);
 				window.location.href = '/#/primary';
 			}
-			void 0;
+			console.log('signup: response.data: ' + JSON.stringify(response.data));
 		});
 	}
 
+	// User's sign in method
 	$scope.signin = function()
 	{
-		void 0;
+		console.log('hit signin button with' + JSON.stringify($scope.person));
 		$http.post('/signin', $scope.person).then(function(response)
 		{
+			// If there is an error
 			if (response.data.success === false)
 			{
-				$scope.error = true;	
+				$scope.error = true;	// This flag used to make error warning visible
 				$scope.errorMessage = response.data.message;
-				void 0;
+				console.log('signin: response.data: ' + JSON.stringify(response.data));
 			}
+			// IF it all worked out
 			else
 			{
 				$scope.error = false;
 				$uibModalInstance.close($scope.person);
 				SessionSvc.validate(response.data);
-				void 0;
-				void 0;
+				console.log('session valid: ' + SessionSvc.valid);
+				console.log('signin: session user id: ' + JSON.stringify(SessionSvc.userID));
 				window.location.href = '/#/primary';
 			}
 		});

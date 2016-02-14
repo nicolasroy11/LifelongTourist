@@ -1,4 +1,4 @@
-angular.module('roomem').directive('testDir', function()
+angular.module('app').directive('testDir', function()
 {
   return {
     restrict: 'AECM',
@@ -11,6 +11,16 @@ angular.module('roomem').directive('testDir', function()
     	formattedPerson: '&'
     },
     transclude: true,
+  //   link: function(scope, elem, attrs)
+  //   {
+		// console.log('Linking...');
+		// console.log(elem);
+		// if(scope.var1 === '56767860c35bee1203a9ae20')
+		// {
+		// 	elem.removeAttr('class');
+		// }
+		// console.log(scope);
+  //   }
 
   };
 });

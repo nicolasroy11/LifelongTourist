@@ -1,4 +1,5 @@
-var roomem = angular.module('roomem',
+// First argument is the name of the controller, second is the array of dependencies
+var app = angular.module('app',
 	['ui.router',
 	'uiGmapgoogle-maps',
 	'ngFileUpload', 
@@ -10,7 +11,7 @@ var roomem = angular.module('roomem',
 	'ngResource'
 	]);
 
-roomem.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) 
+app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) 
 {
 
 	$stateProvider
@@ -92,7 +93,7 @@ roomem.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiPro
 				.then(function (response)
 		        {
 		        	$rootScope.viewedRoom = response;
-		        	void 0;
+		        	console.log("$rootScope.viewedRoom: " + JSON.stringify($rootScope.viewedRoom));
 		        	return response;
 				});
 			}]
@@ -156,23 +157,26 @@ roomem.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiPro
 		controller: 'threadsCtrl',
 		templateUrl: '../../views/sent.html'
     })
-    .state('home.roomieQuery',
+    .state('home.touristQuery',
     {
-    	url: 'roomieQuery',
-		templateUrl: '../../views/querytest.html',
-		controller: 'dbqueryCtrl'
+    	url: 'touristQuery',
+		templateUrl: '../../views/touristQuery.html',
+		controller: 'touristQueryCtrl',
+		model: 'tourist'
 	})
-	.state('home.roomQuery',
+	.state('home.tripQuery',
     {
-    	url: 'roomQuery',
-		templateUrl: '../../views/roomquerytest.html',
-		controller: 'dbroomqueryCtrl'
+    	url: 'tripQuery',
+		templateUrl: '../../views/tripQuery.html',
+		controller: 'tripQueryCtrl',
+		model: 'trip'
 	})
 	.state('home.threadQuery',
     {
     	url: 'threadQuery',
-		templateUrl: '../../views/threadquerytest.html',
-		controller: 'dbthreadqueryCtrl'
+		templateUrl: '../../views/threadquery.html',
+		controller: 'threadQueryCtrl',
+		model: 'thread'
 	});
     $urlRouterProvider.otherwise('/');
 

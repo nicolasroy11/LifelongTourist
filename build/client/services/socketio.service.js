@@ -1,4 +1,4 @@
-angular.module('roomem').factory('socketio', ['socketFactory', function (socketFactory)
+angular.module('app').factory('socketio', ['socketFactory', function (socketFactory)
 {
   return socketFactory();
 }]);

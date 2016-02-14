@@ -6,6 +6,13 @@
 				<div class="photo-upload">
 					<button type="submit">upload</button>
 				</div>
+				<!-- <input type="text" name="fname" placeholder="first name"><br>
+				<input type="text" name="lname" placeholder="last name"><br> -->
+				<!-- <select ng-model="person.primary.couple">
+					<option value="" disabled selected>Are you sharing a room with someone?</option>
+					<option value="yes">I am sharing a room</option>
+					<option value="no">I live alone</option>
+				</select><br> -->
 				<input type="text" ng-model="room.streetAddress" name="streetAddress" placeholder="streetAddress"><br>
 
 				<select ng-model="room.profile.neighborhood">
@@ -15,6 +22,7 @@
 					<option value="Queens">Queens</option>
 				</select><br>
 				<input type="text" ng-model="room.zip" name="zip" placeholder="zip"><br>
+				<!-- <input type="text" ng-model="room.match.price" name="price" placeholder="price"><br> -->
 				<select ng-model="room.profile.numOfRooms">
 					<option value="" disabled selected>number of bedrooms</option>
 					<option value="1">1 bedroom</option>
@@ -89,8 +97,8 @@
 			  	<input type="text" ng-model="room.profile.listingName" class="listing-name" name="listing-name" placeholder="listing name (this is the first thing people will see when they search for appartments)"><br>
 				<label for="apt-desc" class="apt-desc-label">about the room and apartment</label>
 				<textarea rows="10" class="apt-desc-text" id="apt-desc" ng-model="room.profile.about"></textarea>
-
-							</div>
+				
+			</div>
 		</div>
 	</form>
 </div>

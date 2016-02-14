@@ -3,8 +3,12 @@
 		<div>Hi you</div>
 		<img src="../img/falls.jpeg" class="profile-pic"></img>
 		<form name="form">
+		  <!-- Single Image with validations -->
 		  <div class="button" ngf-select ngf-change="test('got it!')" ng-model="file" name="file" ngf-max-size="20MB" ngf-min-height="100" ngf-fix-orientation="false" ngf-resize="{width: 500, height: 500}">Select</div>
 		  <button type="submit" ng-click="submit()">submit one</button>
+		 <!--  Multiple files
+		  <div class="button" ngf-select ng-model="files" name="files" ngf-fix-orientation="false" ngf-multiple="true">Select</div>
+		  <button type="submit" ng-click="submitFiles()">submit several</button> -->
 		</form>
 		<a ui-sref="home.roomie.profile.primary" class="sidenav-link">Primary</a>
 		<a ui-sref="home.roomie.profile.match" class="sidenav-link">Match</a>

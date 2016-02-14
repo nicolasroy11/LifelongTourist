@@ -1,4 +1,21 @@
+<!-- <div ng-include src="'views/menu_template.html'"></div>
+<div ng-include src="'views/dev_menu_template.html'"></div>
+ -->
+<!-- <div ng-repeat="match in matchFields">
+	<div class="row">	
+		<div class="col-sm-4 match-field">
+			{{ match.caption }}
+		</div>
+		<div ng-repeat="field in match.fields" class="{{ field.class }}">
+			<select class="form-control"  ng-model="field.model">
+				<option ng-repeat="s in field.w" value="{{ s.value }}" ng-selected='{{ field.model }} === {{ s.value }}'>{{ s.html }}</option>
+			</select>
+		</div>
+	</div>
+</div> -->
 
+<!-- <select-dir match="matchFields" ng-repeat="match in matchFields">
+</select-dir> -->
 
 <div id="roomie-fields">
 <div class="container">
@@ -27,6 +44,12 @@
 					<div class="col-sm-4 match-field">
 						Couples or Singles?
 					</div>
+					<!-- <div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.couple.value">
+							<option value="no">prefer single</option>
+							<option value="dc">don't care</option>
+						</select>
+					</div> -->
 					<div class="col-sm-8 match-field">
 						<select class="form-control" ng-model="person.match.couple.weight">
 							<option value="1" ng-selected='person.match.couple.weight === 1'>don't care</option>
@@ -143,6 +166,14 @@
 					<div class="col-sm-4 match-field">
 						Smokers?
 					</div>
+					<!-- <div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.pets.value">
+							<option value="dogs">dogs</option>
+							<option value="cats">cats</option>
+							<option value="other">other</option>
+							<option value="other">none</option>
+						</select>
+					</div> -->
 					<div class="col-sm-8 match-field">
 						<select class="form-control" ng-model="person.match.pets.weight">
 							<option selected value="1">don't care</option>
@@ -152,8 +183,12 @@
 					</div>
 				</div>
 			</div>	
-
-				<div class="submit-option">
+<!-- 			<div class="col-sm-6">
+				<label for="additional-text" class="additional-label">anything else? put it right here...</label>
+				<textarea rows="13" class="additional-text" id="additional-text"></textarea>
+			</div> -->
+		
+		<div class="submit-option">
 			<input type="submit" value="save and finish later">
 			OR
 			<button class="btn btn-info" ng-click="updateMatch()">Find my roommate</button></td>

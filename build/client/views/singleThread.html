@@ -1,9 +1,11 @@
 <div ng-controller="singleThreadCtrl">
 	<h1>{{ $root.singleThread.messages }}</h1>
-	<div ng-repeat="message in messages">	 
-		<div ng-show="$index>0">	
+	<!-- <p>{{ messages }}</p> -->
+	<div ng-repeat="message in messages">	 <!-- | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage -->
+		<div ng-show="$index>0">	<!-- This will need to be fixed in the DB -->
 			<h5>{{ message.senderName }} says: </h5>
 				{{ message.message }}
+				<!-- {{ $index }} -->
 		</div>
 	</div>
 	<form ng-submit="reply()">

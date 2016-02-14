@@ -1,11 +1,13 @@
-angular.module('roomem').controller('dbthreadqueryCtrl', ['$scope', '$http', '$location', '$log', function($scope, $http, $location, $log)
+angular.module('app').controller('threadQueryCtrl', 
+['$scope', '$http', '$location', '$log', 
+function($scope, $http, $location, $log)
 	{
 
 		var refresh = function()
 		{
 			$http.get('/messageList').success(function(response)
 			{
-				void 0;
+				console.log('DB thread ctrl refresh: ' + JSON.stringify(response));
 				$scope.threadList = response;
 				$scope.thread = '';
 			});
@@ -18,9 +20,10 @@ angular.module('roomem').controller('dbthreadqueryCtrl', ['$scope', '$http', '$l
 		{
 			$http.post('/roomieList', $scope.person).then(function(response)
 			{
-				void 0;
+				console.log(response.data._id);
 				sessionStorage.setItem('userID', response.data._id);
 				window.location.hash = "#querytest";
+				//$scope.person_id = response._id;
 			});
 			refresh();
 		}
@@ -29,16 +32,17 @@ angular.module('roomem').controller('dbthreadqueryCtrl', ['$scope', '$http', '$l
 		{
 			$http.post('/roomieList', $scope.person).then(function(response)
 			{
-				void 0;
+				console.log(response.data._id);
 				sessionStorage.setItem('userID', response.data._id);
 				window.location.hash = "#querytest";
+				//$scope.person_id = response._id;
 			});
 			refresh();
 		}
 
 		$scope.remove = function(id)
 		{
-			void 0;
+			console.log(id);
 			$http.delete('/thread/' + id).success(function(response)
 			{
 				refresh();
@@ -47,23 +51,25 @@ angular.module('roomem').controller('dbthreadqueryCtrl', ['$scope', '$http', '$l
 
 		$scope.edit = function(id)
 		{
-			void 0;
+			console.log(id);
 			$http.get('/roomieList/' + id).success(function(response)
 			{
-				void 0;
+				console.log(response);
 				$scope.person = response;
+				//refresh();
 			});
 		}
 
 		$scope.update = function()
 		{
-			void 0;
+			console.log($scope.person._id);
 			$http.put('/roomieList/' + $scope.person._id, $scope.person).success(function(response)
 			{
-				void 0;
+				//console.log($scope.person);
+				console.log(response);
 				refresh();
 			});
 		}
+		
 
-
-			}]);
+	}]);

@@ -1,11 +1,13 @@
 var express = require('./config/express');
 var passport = require('./config/passport');
 
+// DB models
 var Roomie = require('./server/models/roomie.server.model');
 var Room = require('./server/models/room.server.model');
 var Thread = require('./server/models/thread.server.model');
 var Agent = require('./server/models/agent.server.model');
 
+// login dependencies
 var app = express();
 app.io = require('socket.io')();
 var passport = passport();
@@ -15,13 +17,14 @@ var http = require('http'),
 
 io.on('connection', function(socket)
 {
-	void 0;
+	console.log('A user has connected!');
 	socket.on('disconnect', function()
 	{
-		void 0;
+		console.log('A user has disconnected!');
 	});
 });
 
+// Routes
 var roomieRoutes = require('./server/routes/roomie.server.routes');
 var loginRoutes = require('./server/routes/roomie.login.routes');
 var dbqueryRoutes = require('./server/routes/dbquery.server.routes');
@@ -40,10 +43,11 @@ uploadRoutes(app);
 threadRoutes(app, io);
 
 
+// app.listen('3000');
 app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function()
 {
-	void 0;
+	console.log('Express server listening on port ' + server.address().port);
 });
 
 io.listen(server);
@@ -52,3 +56,4 @@ io.listen(server);
 
 module.exports = app;
 
+// console.log('Nick is a roomem pimp');

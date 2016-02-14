@@ -1,0 +1,61 @@
+<table class="table" >
+	<thead>
+		<th>Threads</th>
+	</thead>
+	<tbody ng-repeat="thread in threadList">
+		<!-- <tr>
+			<td>
+				<input class="form-control" ng-model="thread._id"></input>
+				<input class="form-control" ng-model="thread.parties"></input>
+				<input class="form-control" ng-model="thread.agent"></input>
+				<input class="form-control" ng-model="thread.title"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="thread.messages"></input>
+			</td>
+			
+			<td><button class="btn btn-primary" ng-click="addRoom()">Add room</button></td>
+			<td><button class="btn btn-info" ng-click="update()">Update</button></td>
+		</tr> -->
+		<!-- The following fields display the contents of a db query done in server.js -->
+		<tr>
+			<td>
+				<h5>thread ID: </h5>{{thread._id}}<br>
+				<h5>parties: </h5>{{thread.parties}}<br>
+				<h5>agent: </h5>{{thread.agent}}<br>
+				<h5>thread title: </h5>{{thread.title}}<br>
+			</td>
+		</tr>
+		<tr ng-repeat="message in thread.messages">
+<!-- 			<table>
+				<thead>
+					<th>sender</th>
+					<th>status<th>
+					<th>msg</th>
+				</thead>
+				<tbody>
+					<tr> -->
+					<td>
+						<h5>sender: </h5>{{message.senderName}}, 
+						<h5>status: </h5>{{message.status}}
+						<h5>message: </h5>{{message.message}}
+					</td>
+					
+<!-- 					</tr>
+				<tbody>
+				<hr>
+			</table> -->
+		</tr>
+			<!-- <td ng-repeat="message in thread.messages">
+				<h4>sender: </h4> {{message.senderName}}<br>
+				<h4>msg: </h4> {{message.message}}<br>
+				<h4>status: </h4> {{message.status}}<br>
+			</td> -->
+
+			
+			<!-- <td>{{room.number.cell}}</td> -->
+			<td><button class="btn btn-danger" ng-click="remove(thread._id)">Remove</button></td>
+			<!-- <td><button class="btn btn-warning" ng-click="edit(thread._id)">Edit</button></td> -->
+		
+	</tbody>
+</table>

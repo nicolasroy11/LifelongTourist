@@ -1,4 +1,6 @@
-angular.module('roomem').controller('resultsDisplayCtrl', 
+angular.module('app').controller('resultsDisplayCtrl', 
+// ['$scope', 'uiGmapGoogleMapApi',  'search', '$sessionStorage',
+// function($scope, uiGmapGoogleMapApi, search, $sessionStorage)
 ['QuerySvc', '$stateParams', '$rootScope', 'MatchSvc', '$sessionStorage', '$scope', '$stateParams',
 function(QuerySvc, $stateParams, $rootScope, MatchSvc, $sessionStorage, $scope, $stateParams)
 {
@@ -8,7 +10,7 @@ function(QuerySvc, $stateParams, $rootScope, MatchSvc, $sessionStorage, $scope, 
 		var search = {};
 		$scope.roomlist = [];
 		var query = $stateParams.n;
-		void 0;
+		console.log(query);
 		return QuerySvc.genericGet("room", query)
 		.then(function (rooms)
         {
@@ -16,19 +18,25 @@ function(QuerySvc, $stateParams, $rootScope, MatchSvc, $sessionStorage, $scope, 
         	$scope.roomList = rooms;
         	for (i in rooms)
 			{
+				// display the names of each roomie in the view
 				$scope.roomList[i].names = [];
 				if (rooms[i].meta.byAgent === false){ $scope.roomList[i].names.push(rooms[i].meta.listerID.profile.name); }
 				$scope.roomList[i].excerpt = rooms[i].profile.about.substring(0, 250) + '...';
+				// console.log('rooms.length: ' + rooms.length);
+				// console.log('rooms[i].roomie.length: ' + rooms[i].roomie.length);
 				for(j = 0; j < rooms[i].roomie.length; j++)
 				{
 					$scope.roomList[i].names.push(rooms[i].roomie[j].profile.name); 
 				}
 				$scope.roomList[i].hash = "#/roomProfile/" + rooms[i]._id;
-				if($sessionStorage.session)	
+				// console.log('search.roomList[i].names: ' + JSON.stringify(search.roomList[i].names));
+				// console.log("$scope.name: " + $scope.name);
+				// Calculate the compatibility index for the lister and the logged in user
+				if($sessionStorage.session)	// Only test compatibility if someone is logged in
 				{
 					var match = MatchSvc($sessionStorage.user, rooms[i].meta.listerID);
 					$scope.roomList[i].compatibility = match;
-					void 0;
+					console.log("match is: " + match);
 					if(match >= 80){$scope.roomList[i].compColor="#55aa55";}else
 					if(match < 80 && match > 59){$scope.roomList[i].compColor="#dddd00";}else
 					if(match < 60){$scope.roomList[i].compColor="rgb(218, 83, 125)";}
@@ -40,8 +48,9 @@ function(QuerySvc, $stateParams, $rootScope, MatchSvc, $sessionStorage, $scope, 
 				}
 			}
 			$scope.roomlist = search.roomList;
-			void 0;
-			void 0;
+			console.log("In resultsDisplayCtrl: ");
+			console.log($scope.roomList);
+			// console.log(search);
 		});
 	}
 	refresh();

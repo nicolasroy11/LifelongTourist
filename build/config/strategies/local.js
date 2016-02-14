@@ -1,21 +1,23 @@
 var passport = require('passport'),
 	LocalStrategy = require('passport-local').Strategy,
-	Roomie = require('mongoose').model('Roomie');
+	Tourist = require('mongoose').model('Tourist');
 
 module.exports = function()
 {	
+	// 'done' is called when the authentication process is over.
 	passport.use(new LocalStrategy(function(username, password, done)
 	{
-		Roomie.findOne(
+		// console.log('looking for ' + username + ' and ' + password);
+		Tourist.findOne(
 		{
 			username: username
 		})
-		.populate('threads')	
-		.populate('meta.hasRoom')	
+		.populate('threads')	// populate all the user's threads
+		// .populate('meta.hasRoom')	// populate the room
 		.exec(
 		function(err, user)
 		{
-			void 0;
+			console.log('and user: ' + user);
 			if (err)
 			{
 				return done(err);
@@ -40,3 +42,8 @@ module.exports = function()
 	}));
 };
 
+  // Roomie.findOne({_id: id}).populate('threads').exec(function(err, user) 
+  //  {
+  //    console.log('deserialized: ' + user);
+  //    done(err, user);
+  //  });
