@@ -47,13 +47,17 @@ var TouristSchema = new Schema(
 	        default: Date.now
 	    },
 	},
-	primary:
+	profile:
 	{
+		name :
+		{
+	        type: String,
+	    },
 		gender :
 		{
 	        type: String,
 	    },
-		industry :
+		occupation :
 		{
 	        type: String,
 	        default: 'none',
@@ -75,7 +79,6 @@ var TouristSchema = new Schema(
     	ref: 'Tourist'
 	}
 });
-
 
 TouristSchema.pre('save', function(next)
 {

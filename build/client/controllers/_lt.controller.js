@@ -65,7 +65,7 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 	})
     .state('home.search', 
 	{
-		url: 	'roomSearch?n',
+		url: 	'tripSearch?n',
 		views: 
 		{
 			'': {
@@ -73,22 +73,22 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 				},
 			'results@home.search': 
 				{
-					templateUrl: '../../views/roomSearch.html',
+					templateUrl: '../../views/tripSearch.html',
 					controller: 'resultsDisplayCtrl',
 				},
 		}
 	})
-	.state('home.roomProfile', 
+	.state('home.tripProfile', 
 	{
-		url:         'roomProfile/:id',
+		url:         'tripProfile/:id',
 		controller: 'singleRoomCtrl',
-		templateUrl: '../../views/roomProfile.html',
+		templateUrl: '../../views/tripProfile.html',
 		resolve:
 		{
 			roomInfo: ['QuerySvc', '$stateParams', '$rootScope', function(QuerySvc, $stateParams, $rootScope)
 			{
 				var rid = $stateParams.id;
-				return QuerySvc.populate("room", rid, 'roomie meta.listerID')
+				return QuerySvc.populate("trip", rid, 'tourist meta.listerID')
 				.then(function (response)
 		        {
 		        	$rootScope.viewedRoom = response;
@@ -98,36 +98,36 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 			}]
 		}
 	})
-	.state('home.roomPost', 
+	.state('home.tripPost', 
 	{
-		url:         'roomPost',
-		controller: 'roomCtrl',
-		templateUrl: '../../views/roomForm.html'
+		url:         'tripPost',
+		controller: 'tripCtrl',
+		templateUrl: '../../views/tripForm.html'
 	})
-	.state('home.roomie',
+	.state('home.tourist',
 	{
-		url:         'roomie',
+		url:         'tourist',
 		abstract: true,
-		controller: 'roomieCtrl',
-		templateUrl: '../../views/roomie_nav.html',
+		controller: 'touristCtrl',
+		templateUrl: '../../views/tourist_nav.html',
     })
-    .state('home.roomie.profile',
+    .state('home.tourist.profile',
 	{
 		url: 	'/profile',
 		abstract: true,
 		templateUrl: '../../views/profile_sidenav.html'
     })
-	.state('home.roomie.profile.primary',
+	.state('home.tourist.profile.primary',
 	{
 		url:         '/primary',
-		templateUrl: '../../views/roomieForm.html'
+		templateUrl: '../../views/touristForm.html'
     })
-    .state('home.roomie.profile.match',
+    .state('home.tourist.profile.match',
 	{
 		url:         '/match',
-		templateUrl: '../../views/roomiePreferences.html'
+		templateUrl: '../../views/touristPreferences.html'
     })
-    .state('home.roomie.messages',
+    .state('home.tourist.messages',
 	{
 		url: 	'/messages',
 		views: 
@@ -138,19 +138,19 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 				} ,
 		}
     })
-	.state('home.roomie.messages.inbox',
+	.state('home.tourist.messages.inbox',
 	{
 		url:         '/inbox',
 		controller: 'threadsCtrl',
 		templateUrl: '../../views/inbox.html'
     })
-    .state('home.roomie.messages.new',
+    .state('home.tourist.messages.new',
 	{
 		url:         '/new',
 		controller: 'threadsCtrl',
-		templateUrl: '../../views/roomiePreferences.html'
+		templateUrl: '../../views/touristPreferences.html'
     })
-    .state('home.roomie.messages.sent',
+    .state('home.tourist.messages.sent',
 	{
 		url:         '/sent',
 		controller: 'threadsCtrl',
@@ -160,14 +160,14 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
     {
     	url: 'touristQuery',
 		templateUrl: '../../views/touristQuery.html',
-		controller: 'tripQueryCtrl',
+		controller: 'queryCtrl',
 		model: 'tourist'
 	})
 	.state('home.tripQuery',
     {
     	url: 'tripQuery',
 		templateUrl: '../../views/tripQuery.html',
-		controller: 'tripQueryCtrl',
+		controller: 'queryCtrl',
 		model: 'trip'
 	})
 	.state('home.threadQuery',

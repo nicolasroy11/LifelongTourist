@@ -1,4 +1,4 @@
-angular.module('app').controller('tripQueryCtrl', 
+angular.module('app').controller('queryCtrl', 
 ['$scope', '$http', '$sessionStorage', '$state',
 function($scope, $http, $sessionStorage, $state)
 	{
@@ -7,7 +7,7 @@ function($scope, $http, $sessionStorage, $state)
 		void 0;
 		var refresh = function()
 		{
-			$http.get('/list/trip')
+			$http.get('/list/' + model)
 			.then(function(response)
 			{
 				void 0;

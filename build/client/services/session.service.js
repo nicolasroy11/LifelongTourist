@@ -9,7 +9,7 @@ function($rootScope, $sessionStorage, QuerySvc)
 		void 0;
 		$sessionStorage.threads = user.threads;
 		void 0;
-		$sessionStorage.room = user.meta.hasRoom;
+		$sessionStorage.trips = user.trips;
 		void 0;
 
 		$rootScope.loggedIn = true;

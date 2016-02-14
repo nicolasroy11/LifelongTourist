@@ -1,4 +1,4 @@
-angular.module('app').controller('roomCtrl', 
+angular.module('app').controller('tripCtrl', 
 ['$scope', '$http', 'uiGmapGoogleMapApi', 'MatchSvc', 'AddRoomies', '$q', '$timeout', 'UpdateSvc', 'QuerySvc', '$sessionStorage',
 function($scope, $http, uiGmapGoogleMapApi, MatchSvc, AddRoomies, $q, $timeout, UpdateSvc, QuerySvc, $sessionStorage)
 	{

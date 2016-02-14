@@ -1,4 +1,4 @@
-angular.module('app').controller('roomieCtrl', 
+angular.module('app').controller('touristCtrl', 
 ['$scope', '$http', 'Upload', '$rootScope', 'SessionSvc', '$sessionStorage',
 function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 	{
