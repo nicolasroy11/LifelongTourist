@@ -98,7 +98,8 @@ gulp.task('build:copy', ['build:cleanfolder'], function()
 {
 	return gulp.src(['./**/*/'])
 	.pipe(gulp.dest('./build/'));
-});
+
+	});
 
 gulp.task('build:remove', ['build:copy'], function(cb)
 {
@@ -135,7 +136,7 @@ gulp.task('build:strip', function()
 	.pipe(gulp.dest('./build'))	
 });
 
-gulp.task('build', ['build:copy', 'build:remove']);
+gulp.task('build', ['build:remove','build:strip']);
 
 gulp.task('build:serve', function()
 {

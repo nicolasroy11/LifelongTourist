@@ -21,8 +21,8 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 		views: 
 		{
 			'': {templateUrl: '../../views/tempLandingPage.html'} ,
-			'signup_temp@home': {templateUrl: '../../views/dev_nav.html'},
-			'social-temp@home': {templateUrl: '../../views/logged_nav.html'},
+			'signup_temp@home': {templateUrl: '../../views/_nav_dev.html'},
+			'social-temp@home': {templateUrl: '../../views/_nav_logged.html'},
 			'mid-temp@home': {templateUrl: '../../views/msg_panel.html'},
 		},
 	})
@@ -31,9 +31,9 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 		url: 	'/',
 		views: 
 		{
-			'': {templateUrl: '../../views/home_nav.html'} ,
-			'dev-nav@home': {templateUrl: '../../views/dev_nav.html'},
-			'logged-nav@home': {templateUrl: '../../views/logged_nav.html'},
+			'': {templateUrl: '../../views/_nav_home.html'} ,
+			'dev-nav@home': {templateUrl: '../../views/_nav_dev.html'},
+			'logged-nav@home': {templateUrl: '../../views/_nav_logged.html'},
 			'msg-panel@home': {templateUrl: '../../views/msg_panel.html'},
 		}
 	})
@@ -41,7 +41,7 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 	{
 		url: 	'about',
 		abstract: true,
-		templateUrl: '../../views/about_nav.html'
+		templateUrl: '../../views/_nav_about.html'
 	})
 	.state('home.about.us',
 	{
@@ -69,7 +69,7 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 		views: 
 		{
 			'': {
-					templateUrl: '../../views/search_nav.html',
+					templateUrl: '../../views/_nav_search.html',
 				},
 			'results@home.search': 
 				{
@@ -109,13 +109,13 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 		url:         'tourist',
 		abstract: true,
 		controller: 'touristCtrl',
-		templateUrl: '../../views/tourist_nav.html',
+		templateUrl: '../../views/_nav_tourist.html',
     })
     .state('home.tourist.profile',
 	{
 		url: 	'/profile',
 		abstract: true,
-		templateUrl: '../../views/profile_sidenav.html'
+		templateUrl: '../../views/_sidenav_profile.html'
     })
 	.state('home.tourist.profile.primary',
 	{
@@ -133,7 +133,7 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 		views: 
 		{
 			'': {
-					templateUrl: '../../views/messages_sidenav.html',
+					templateUrl: '../../views/_sidenav_messages.html',
 					controller: 'threadsCtrl',
 				} ,
 		}

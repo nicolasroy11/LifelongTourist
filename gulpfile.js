@@ -134,6 +134,7 @@ gulp.task('build:copy', ['build:cleanfolder'], function()
 {
 	return gulp.src(['./**/*/'])
 	.pipe(gulp.dest('./build/'));
+	
 });
 
 // Task to remove all files we don't want to include in our final build
@@ -176,7 +177,7 @@ gulp.task('build:strip', function()
 	.pipe(gulp.dest('./build'))	
 });
 
-gulp.task('build', ['build:copy', 'build:remove']);
+gulp.task('build', ['build:remove','build:strip']);
 
 // Browser-Sync task for when a build is made
 gulp.task('build:serve', function()
