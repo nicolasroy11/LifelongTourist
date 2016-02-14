@@ -23,7 +23,6 @@
 				</div>
 			</a>
 			</div>
-		<!-- <button ng-click="pagination.prevPage()">Previous</button> -->
 		<ul class="pagination">
 			<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
 				<li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}">
@@ -31,5 +30,5 @@
 				</li>
 			<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
 		</ul>
-	
-</div>
+
+	</div>

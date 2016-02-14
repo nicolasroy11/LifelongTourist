@@ -38,13 +38,6 @@ var TripSchema = new Schema(
 	}],
 });
 
-// Before saving, we hash the password so it isn't sent to DB in clear text form.
-// TripSchema.pre('save', function(next)
-// {
-// 	this.id = 'or' + this._id.toString();
-// 	next();
-// });
 
-// This step actually creates a collection in the db.
 var Trip = mongoose.model("Trip", TripSchema);
 module.exports = Trip;

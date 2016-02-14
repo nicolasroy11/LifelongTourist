@@ -2,16 +2,16 @@ angular.module('app').controller('tripQueryCtrl',
 ['$scope', '$http', '$sessionStorage', '$state',
 function($scope, $http, $sessionStorage, $state)
 	{
-		console.log('in room db controller');
+		void 0;
 		var model = $state.current.model;
-		console.log(model);
+		void 0;
 		var refresh = function()
 		{
 			$http.get('/list/trip')
 			.then(function(response)
 			{
-				console.log('dbquery in db refresh: ');
-				console.log(response);
+				void 0;
+				void 0;
 				$scope.list = response.data;
 				$scope.item = '';
 			});
@@ -21,11 +21,11 @@ function($scope, $http, $sessionStorage, $state)
 
 		$scope.add = function()
 		{
-			console.log($scope.item);
+			void 0;
 			$http.post('/list', {"item": model, "data": $scope.item})
 			.then(function(response)
 			{
-				console.log(response.data._id);
+				void 0;
 				sessionStorage.setItem('userID', response.data._id);
 				refresh();
 			});
@@ -33,7 +33,7 @@ function($scope, $http, $sessionStorage, $state)
 
 		$scope.remove = function(id)
 		{
-			console.log(id);
+			void 0;
 			$http.delete('/list/' + model + '/' + id)
 			.then(function(response)
 			{
@@ -43,28 +43,26 @@ function($scope, $http, $sessionStorage, $state)
 
 		$scope.edit = function(id)
 		{
-			console.log(id);
+			void 0;
 			$http.get('/list/' + model + '/' + id)
 			.then(function(response)
 			{
 				$scope.item = response.data;
-				console.log('edit response: ');
-				console.log(response.data);
-				// refresh();
+				void 0;
+				void 0;
 			});
 		}
 
 		$scope.update = function()
 		{
-			console.log($scope.item);
+			void 0;
 			$http.put('/list/' + model + '/' + $scope.item._id, $scope.item)
 			.then(function(response)
 			{
-				//console.log($scope.person);
-				console.log(response.data);
+				void 0;
 				refresh();
 			});
 		}
-		
 
-	}]);
+
+			}]);

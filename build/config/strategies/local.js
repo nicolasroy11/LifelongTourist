@@ -4,20 +4,17 @@ var passport = require('passport'),
 
 module.exports = function()
 {	
-	// 'done' is called when the authentication process is over.
 	passport.use(new LocalStrategy(function(username, password, done)
 	{
-		// console.log('looking for ' + username + ' and ' + password);
 		Tourist.findOne(
 		{
 			username: username
 		})
-		.populate('threads')	// populate all the user's threads
-		// .populate('meta.hasRoom')	// populate the room
+		.populate('threads')	
 		.exec(
 		function(err, user)
 		{
-			console.log('and user: ' + user);
+			void 0;
 			if (err)
 			{
 				return done(err);
@@ -42,8 +39,3 @@ module.exports = function()
 	}));
 };
 
-  // Roomie.findOne({_id: id}).populate('threads').exec(function(err, user) 
-  //  {
-  //    console.log('deserialized: ' + user);
-  //    done(err, user);
-  //  });

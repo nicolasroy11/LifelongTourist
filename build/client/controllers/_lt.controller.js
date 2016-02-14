@@ -1,4 +1,3 @@
-// First argument is the name of the controller, second is the array of dependencies
 var app = angular.module('app',
 	['ui.router',
 	'uiGmapgoogle-maps',
@@ -93,7 +92,7 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 				.then(function (response)
 		        {
 		        	$rootScope.viewedRoom = response;
-		        	console.log("$rootScope.viewedRoom: " + JSON.stringify($rootScope.viewedRoom));
+		        	void 0;
 		        	return response;
 				});
 			}]
@@ -161,7 +160,7 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
     {
     	url: 'touristQuery',
 		templateUrl: '../../views/touristQuery.html',
-		controller: 'touristQueryCtrl',
+		controller: 'tripQueryCtrl',
 		model: 'tourist'
 	})
 	.state('home.tripQuery',

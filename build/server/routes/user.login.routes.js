@@ -13,27 +13,22 @@ module.exports = function(app)
   .post(u.mailSend);
 
 
-  // sign in
   app.post('/signin', function(req, res, next)
   {
     passport.authenticate('local', function(err, user, info)
     {
       if (err)
       {
-        return next(err); // will generate a 500 error
+        return next(err); 
       }
-      // Generate a JSON response reflecting authentication status
       if (! user)
       {
         return res.send({ success : false, message : info.message });
       }
-      // On success, remove password and salt from the returned user object and send to client.
-      // This way is meant as a temporary workaround. This task should be performed by local.js
       user = user.toObject();
       delete user.password;
       delete user.salt;
       return res.json(user);
-      // return res.send({ success : true, message : 'authentication succeeded'});
     })(req, res, next);
   });
 

@@ -23,18 +23,14 @@ angular.module('pageslide-directive', [])
             },
             link: function ($scope, el, attrs) {
 
-                /* Inspect */
 
-                //console.log($scope);
-                //console.log(el);
-                //console.log(attrs);
 
                 var param = {};
 
                 param.side = $scope.psSide || 'right';
                 param.speed = $scope.psSpeed || '0.5';
                 param.size = $scope.psSize || '300px';
-                param.zindex = 1000; // Override with custom CSS
+                param.zindex = 1000; 
                 param.className = $scope.psClass || 'ng-pageslide';
                 param.cloak = $scope.psCloak && $scope.psCloak.toLowerCase() == 'false' ? false : true;
                 param.squeeze = Boolean($scope.psSqueeze) || false;
@@ -45,13 +41,11 @@ angular.module('pageslide-directive', [])
 
                 el.addClass(param.className);
 
-                /* DOM manipulation */
 
                 var content = null;
                 var slider = null;
                 var body = param.container ? document.getElementById(param.container) : document.body;
 
-                // TODO verify that we are meaning to use the param.className and not the param.bodyClass
 
                 function setBodyClass(value){
                     if (param.bodyClass) {
@@ -66,21 +60,17 @@ angular.module('pageslide-directive', [])
 
                 slider = el[0];
 
-                // Check for div tag
                 if (slider.tagName.toLowerCase() !== 'div' &&
                     slider.tagName.toLowerCase() !== 'pageslide')
                     throw new Error('Pageslide can only be applied to <div> or <pageslide> elements');
 
-                // Check for content
                 if (slider.children.length === 0)
                     throw new Error('You have to content inside the <pageslide>');
 
                 content = angular.element(slider.children);
 
-                /* Append */
                 body.appendChild(slider);
 
-                /* Style setup */
                 slider.style.zIndex = param.zindex;
                 slider.style.position = param.container !== false ? 'absolute' : 'fixed';
                 slider.style.width = 0;
@@ -125,7 +115,6 @@ angular.module('pageslide-directive', [])
                 }
 
 
-                /* Closed */
                 function psClose(slider, param) {
                     if (slider && slider.style.width !== 0) {
                         if (param.cloak) content.css('display', 'none');
@@ -173,7 +162,6 @@ angular.module('pageslide-directive', [])
                     setBodyClass('closed');
                 }
 
-                /* Open */
                 function psOpen(slider, param) {
                     if (slider.style.width !== 0) {
                         switch (param.side) {
@@ -230,9 +218,6 @@ angular.module('pageslide-directive', [])
                     return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
                 }
 
-                /*
-                * Close the sidebar if the 'esc' key is pressed
-                * */
 
                 function keyListener(e) {
                     var ESC_KEY = 27;
@@ -243,16 +228,11 @@ angular.module('pageslide-directive', [])
                     }
                 }
 
-                /*
-                * Watchers
-                * */
 
                 $scope.$watch('psOpen', function(value) {
                     if (!!value) {
-                        // console.log("ng-page: " + value);
                         psOpen(slider, param);
                     } else {
-                        // console.log("ng-page: " + value);
                         psClose(slider, param);
                     }
                 });
@@ -264,9 +244,6 @@ angular.module('pageslide-directive', [])
                     }
                 });
 
-                /*
-                * Events
-                * */
 
                 $scope.$on('$destroy', function () {
                     body.removeChild(slider);

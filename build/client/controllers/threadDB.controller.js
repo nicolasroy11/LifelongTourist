@@ -7,7 +7,7 @@ function($scope, $http, $location, $log)
 		{
 			$http.get('/messageList').success(function(response)
 			{
-				console.log('DB thread ctrl refresh: ' + JSON.stringify(response));
+				void 0;
 				$scope.threadList = response;
 				$scope.thread = '';
 			});
@@ -20,10 +20,9 @@ function($scope, $http, $location, $log)
 		{
 			$http.post('/roomieList', $scope.person).then(function(response)
 			{
-				console.log(response.data._id);
+				void 0;
 				sessionStorage.setItem('userID', response.data._id);
 				window.location.hash = "#querytest";
-				//$scope.person_id = response._id;
 			});
 			refresh();
 		}
@@ -32,17 +31,16 @@ function($scope, $http, $location, $log)
 		{
 			$http.post('/roomieList', $scope.person).then(function(response)
 			{
-				console.log(response.data._id);
+				void 0;
 				sessionStorage.setItem('userID', response.data._id);
 				window.location.hash = "#querytest";
-				//$scope.person_id = response._id;
 			});
 			refresh();
 		}
 
 		$scope.remove = function(id)
 		{
-			console.log(id);
+			void 0;
 			$http.delete('/thread/' + id).success(function(response)
 			{
 				refresh();
@@ -51,25 +49,23 @@ function($scope, $http, $location, $log)
 
 		$scope.edit = function(id)
 		{
-			console.log(id);
+			void 0;
 			$http.get('/roomieList/' + id).success(function(response)
 			{
-				console.log(response);
+				void 0;
 				$scope.person = response;
-				//refresh();
 			});
 		}
 
 		$scope.update = function()
 		{
-			console.log($scope.person._id);
+			void 0;
 			$http.put('/roomieList/' + $scope.person._id, $scope.person).success(function(response)
 			{
-				//console.log($scope.person);
-				console.log(response);
+				void 0;
 				refresh();
 			});
 		}
-		
 
-	}]);
+
+			}]);

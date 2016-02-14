@@ -1,4 +1,3 @@
-// This file is the routes used by admin to verify proper room collections operations
 var mongoose = require('mongoose');
 Room = require('../models/room.server.model');
 
@@ -7,65 +6,54 @@ module.exports = function(app)
 
 	app.get('/roomList', function(req,res)
 	{
-		console.log("Got a GET request in roomList!");
+		void 0;
 		Room.find(function(err, room) {
-		if (err) return console.error(err);
-		//console.log(person);
+		if (err) return void 0;
 		res.json(room);
 		});
 	});
 
 	app.delete('/roomList/:id', function(req,res)
 	{
-		// This will get the value of the id from the url
 		var id = req.params.id;
-		console.log(id);
+		void 0;
 		Room.remove({_id: mongoose.Types.ObjectId(id)}, function(err, doc)
 		{
-			// same as in post
 			res.json(doc);
 		});
 	});
 
-	// Adding a new room
 	app.post('/roomList', function(req,res)
 	{
 		var room = new Room(req.body);
 		var userID = req.body.meta.listerID;
-		console.log("userID is: " + userID);
-		console.log("room added: " + JSON.stringify(req.body));
-		// room.roomie = userID;
-		// room.roomie.push(userID);
-		// room.roomie.push(req.body.roomie);
+		void 0;
+		void 0;
 		room.save(function(err, room)
 		{
-		  if (err) return console.error(err);
-		  console.log('This is the room: ' + room);
+		  if (err) return void 0;
+		  void 0;
 		  res.json(room);
 		});
 	});
 
 	app.get('/roomList/:id', function(req,res)
 	{
-		// This will get the value of the id from the url
 		var id = req.params.id;
-		console.log(id);
+		void 0;
 		Room.findOne({_id: mongoose.Types.ObjectId(id)}, function(err, doc) {
-		  if (err) return console.error(err);
-		  console.log(doc);
+		  if (err) return void 0;
+		  void 0;
 		  res.json(doc);
 		});
 	});
 
 	app.put('/roomList/:id', function(req,res)
 	{
-		// This will get the value of the id from the url
 		var id = req.params.id;
 		Room.findOneAndUpdate(
-			// What we're lookign for
 			{_id: mongoose.Types.ObjectId(id)},
 
-			// What we do when we find it
 			{
 				$set: 	
 				{
@@ -76,13 +64,12 @@ module.exports = function(app)
 				}
 			},
 
-			// What we do once we've done our modifications
 			function(err, doc)
 			{
 				res.json(doc);
-				console.log(doc);
+				void 0;
 			});
-		console.log("route reaches server side");	//req.body
+		void 0;	
 	});
 
 }

@@ -10,8 +10,8 @@ angular.module('app').directive('matchDir', function()
     },
     link: function(scope, elem, attrs)
     {
-        console.log('Linking...');
-        console.log(elem);
+        void 0;
+        void 0;
 
     },
     transclude: true,

@@ -15,7 +15,7 @@ var transporter = nodemailer.createTransport(
 var getErrorMessage = function(err)
 {
 	var message = '';
-	console.log('err');
+	void 0;
 	if (err.code)
 	{
 		switch(err.code)
@@ -40,13 +40,12 @@ var getErrorMessage = function(err)
 	return message;
 };
 
-// Handles the sign up button click
 exports.signup = function(req, res, next)
 {
 	if (!req.user)
 	{
-		console.log("This is the request I got: ")
-		console.log(req.body);
+		void 0
+		void 0;
 		var user = new Tourist(req.body);
 		var message = null;
 		user.provider = 'local';
@@ -56,53 +55,30 @@ exports.signup = function(req, res, next)
 		  if (err)
 		  {
 		  	var message = getErrorMessage(err);
-		  	// res.json(message);
 		  	res.send({ success : false, message : message });
-		  	return console.error(err);
+		  	return void 0;
 		  } 
-		  console.log('This is the id: ' + user._id);
-		  // res.json(user);
+		  void 0;
 		  req.login(user, function(err)
 			{
-				console.log('signup: attempting login');
+				void 0;
 				if (err) return next(err);
-				console.log('signup: login successful');
+				void 0;
 				res.json(user);
-				// return res.redirect('/#/querytest');
 			});
 		});
-		// user.save(function(err, user)
-		// {
-		// 	if(err)
-		// 	{
-		// 		var message = getErrorMessage(err);
-		// 		req.flash('error', message);
-		// 		return res.redirect('/signup');
-		// 		res.json(returnMessage);
-		// 	}
-		// 	// If the signup was successful, a user session is created
-		// 	req.login(user, function(err)
-		// 	{
-		// 		if (err) return next(err);
-		// 		// res.json(user);
-		// 		return res.redirect('/#/querytest');
-		// 	});
-		// });
 	}
 	else
 	{
-		// res.json(req.user);
 		res.end("Already logged in with " + req.user.username);
-		//return res.redirect('/');
 	}
 };
 
-// Handles when roomies are added by the room lister
 exports.signupProxy = function(req, res, next)
 {
 
-	console.log("This is the request I got: ")
-	console.log(req.body);
+	void 0
+	void 0;
 	var user = new Roomie(req.body);
 	var message = null;
 	user.provider = 'local';
@@ -112,26 +88,19 @@ exports.signupProxy = function(req, res, next)
 	  if (err)
 	  {
 	  	var message = getErrorMessage(err);
-	  	return console.error(err);
+	  	return void 0;
 	  	res.send({ success : false, message : message });
-	  	
-	  } 
-	  // console.log('Signup proxy: This is the id: ' + user._id);
+
+	  		  } 
 	  res.json(user._id);
-	 //  req.login(user, function(err)
-		// {
-		// 	if (err) return next(err);
-		// 	res.json(user._id);
-		// 	console.log("signupProxy: id: " + user._id);
-		// });
 	});
 
 };
 
 exports.mailSend = function(req, res, next)
 {
-	console.log('mailSend request body: ');
-	console.log(req.body);
+	void 0;
+	void 0;
 	var mailOptions =
 	{
 	    from: req.body.from,
@@ -146,19 +115,16 @@ exports.mailSend = function(req, res, next)
 		{
 	    	if(error)
 	    	{
-	        	return console.log(error);
+	        	return void 0;
 	    	}
-	    	console.log('Message sent: ' + info.response);
+	    	void 0;
 		}
 	);
 };
 
 exports.signout = function(req, res)
 {
-	// logout() is provided by passport to invalidate the session.
-	console.log(req.body);
-	// req.session.destroy();
+	void 0;
 	req.logout();
 	res.status(200).json({status: 'Bye!'})
-	// req.redirect('/');
 };

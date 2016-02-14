@@ -2,25 +2,15 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div ng-controller="greetingBannerCtrl" ng-show="check()" class='messages col-sm-2'>Howdy {{ name }}!</div>
-			<!-- messages dropdown -->
 			<div ng-controller="threadsCtrl" ng-show="check()" class='messages col-sm-2'>
-				<button type="button" class="btn btn-info" ui-sref="home.roomie.messages.inbox" >messages <span class="badge">{{ $root.numThreads }}</span></button> <!-- ng-click="isCollapsed = !isCollapsed" -->
+				<button type="button" class="btn btn-info" ui-sref="home.roomie.messages.inbox" >messages <span class="badge">{{ $root.numThreads }}</span></button> 
 				<div uib-collapse="isCollapsed" class="msg row">
 					<div class="list-group row">
-						<!-- <a ng-click="displaySingle(message.id);"> href="{{message.url}}" -->
-							<!-- <div class="list-group"> -->
 							  <a  ng-repeat="message in $root.messages | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage" ng-click="displaySingle($index)" class="list-group-item">
 							    <h4 class="list-group-item-heading">{{ message.sender }}</h4>
 							    <p class="list-group-item-text">{{ message.excerpt }}</p>
 							  </a>
-							<!-- </div> -->
-							<!-- <div>
-								<h4>{{ message.sender }}</h4>
-									{{ message.message }}
-							</div> -->
-						<!-- </a> -->
 					</div>
-					<!-- <button ng-click="pagination.prevPage()">Previous</button> -->
 					<ul class="pagination">
 						<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
 							<li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}">
@@ -29,8 +19,8 @@
 						<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
 					</ul>
 				</div>
-				
-			</div>
+
+							</div>
 			<div class="col-sm-6"></div> 
 			<a ng-controller='authCtrl' ng-show="check()" ng-click="signoutButton()" class='messages col-sm-2'>Sign Out</a>
 		</div>

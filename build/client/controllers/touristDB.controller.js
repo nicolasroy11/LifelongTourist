@@ -3,16 +3,16 @@ angular.module('app')
 ['$scope', '$http', '$state',
 function($scope, $http, $state)
 {
-	console.log('in room db controller');
+	void 0;
 		var model = $state.current.model;
-		console.log(model);
+		void 0;
 		var refresh = function()
 		{
 			$http.get('/list/' + model)
 			.then(function(response)
 			{
-				console.log('dbquery in db refresh: ');
-				console.log(response);
+				void 0;
+				void 0;
 				$scope.list = response.data;
 				$scope.item = '';
 			});
@@ -25,7 +25,7 @@ function($scope, $http, $state)
 			$http.post('/list', {"item": "tourist", "data": $scope.person})
 			.then(function(response)
 			{
-				console.log(response.data._id);
+				void 0;
 				sessionStorage.setItem('userID', response.data._id);
 				refresh();
 			});
@@ -33,7 +33,7 @@ function($scope, $http, $state)
 
 		$scope.remove = function(id)
 		{
-			console.log(id);
+			void 0;
 			$http.delete('/list/' + model + '/' + id)
 			.then(function(response)
 			{
@@ -43,39 +43,23 @@ function($scope, $http, $state)
 
 		$scope.edit = function(id)
 		{
-			console.log(id);
-			// This will generate an http get route that the server
-			// will pick up on (since we made a get listener in server.js).
-			// keep in mind that the controller can issue a get request
-			// when a button is pressed; it doens't have to be a typed url
-			// followed by an enter key strike.
-			// The server will in turn respond with
-			// the matching db entry in its entirety and put it in the
-			// path specified. This function will listen for completion
-			// of this server task, and upon success, will execute
-			// the success function passing in the server response, which
-			// is the retrieved record.
+			void 0;
 			$http.get('/list/' + id).success(function(response)
 			{
-				console.log(response);
+				void 0;
 				$scope.person = response;
-				//refresh();
 			});
 		}
 
 		$scope.update = function()
 		{
-			console.log($scope.person._id);
-			// This time, since we're modifying using the _id handle
-			// but modifying the other params, we also pass in the entire
-			// modified contact info contained in the put route.
+			void 0;
 			$http.put('/list/' + $scope.person._id, $scope.person).success(function(response)
 			{
-				//console.log($scope.person);
-				console.log(response);
+				void 0;
 				refresh();
 			});
 		}
-		
 
-	}]);
+
+			}]);

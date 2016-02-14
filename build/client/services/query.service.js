@@ -1,12 +1,9 @@
-// This service takes a unique DB ID and returns the whole object
 angular.module('app').factory('QuerySvc',
   ['$q', '$timeout', '$http',
   function ($q, $timeout, $http) 
   {
-    // create user variable used as a boolean to indicate log status
     var user = null;
 
-    // return available functions for use in controllers
     return ({
       get: get,
       genericGet: genericGet,
@@ -38,7 +35,6 @@ function get(type, id)
 	.success(function(data)
 	{
 		user = false;
-		// resolve means to EITHER succeed or fail
 		defer.resolve(data);
 	})
 	.error(function()
@@ -67,13 +63,12 @@ function genericGet(type, params)
 		path = '/thread/' + params;
 	}
 
-	console.log('In generic get')
+	void 0
 
 	$http.get(path)
 	.success(function(data)
 	{
 		user = false;
-		// resolve means to EITHER succeed or fail
 		defer.resolve(data);
 	})
 	.error(function()
@@ -87,7 +82,6 @@ function genericGet(type, params)
 
 function post(type, object)
 {
-	// Create a new instance of deferred
 	var defer = $q.defer();
 	var path;
 	if(type === "roomie")
@@ -107,7 +101,6 @@ function post(type, object)
 	.success(function(data)
 	{
 		user = false;
-		// resolve means to EITHER succeed or fail
 		defer.resolve(data);
 	})
 	.error(function()
@@ -121,9 +114,6 @@ function post(type, object)
 
 function push(type, id, args)
 {
-	// We are checking for an array so that a different route
-	// is taken and things are handled differently, namely
-	// the id array is part of the argument rather than the url
 	var array;
 	if( Object.prototype.toString.call( id) === '[object Array]' )
 	{
@@ -159,9 +149,9 @@ function push(type, id, args)
 	}
 	else
 	{
-		alert( JSON.stringify(args));
+		void 0;
 		args = {'id': id, "args" : args};
-		alert( JSON.stringify(args));
+		void 0;
 		$http.put(path, args)
 		.success(function(data)
 		{
@@ -173,14 +163,13 @@ function push(type, id, args)
 			defer.reject();
 		});
 	}
-	
 
-	return defer.promise;
+
+		return defer.promise;
 }
 
 function populate(type, id, args)
 {
-	// Create a new instance of deferred
 	var defer = $q.defer();
 	var path;
 	if(type === "roomie")
@@ -211,7 +200,6 @@ function populate(type, id, args)
 
 function getArray(type, ids)
 {
-	// Create a new instance of deferred
 	var defer = $q.defer();
 	var path;
 	if(type === "roomie")
@@ -227,7 +215,7 @@ function getArray(type, ids)
 		path = '/thread/getArray';
 	}
 
-	alert( JSON.stringify(path));
+	void 0;
 	$http.get
 	({
 	  method: 'GET',
@@ -242,14 +230,6 @@ function getArray(type, ids)
 	{
 		defer.reject();
 	});
-	// .success(function(data)
-	// {
-	// 	defer.resolve(data);
-	// })
-	// .error(function()
-	// {
-	// 	defer.reject();
-	// });
 
 	return defer.promise;
 }

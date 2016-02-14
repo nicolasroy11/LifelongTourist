@@ -13,7 +13,6 @@ function($uibModal, $log, $location)
 
 		modalInstance.result.then(function ()
 		{
-			// $scope.selected = selectedItem;
 		},
 		function()
 		{

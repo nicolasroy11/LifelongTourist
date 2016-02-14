@@ -32,7 +32,6 @@ function($scope, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, $sessio
 				$rootScope.threads[i].id = $sessionStorage.threads[i]._id;
 				$rootScope.threads[i].lastSender = $sessionStorage.threads[i].messages[numOfMsg].senderName;
 				$rootScope.threads[i].lastExcerpt = $sessionStorage.threads[i].messages[numOfMsg].message.substring(0, 21) + '...';
-				// Mail distribution
 				switch(checkName($rootScope.threads[i].lastSender))
 				{
 				    case 'self':
@@ -45,10 +44,9 @@ function($scope, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, $sessio
 				}
 				$rootScope.numThreads = $rootScope.inbox.length;
 
-				// console.log("$rootScope.threads[" + i + "].id: " + JSON.stringify($rootScope.threads[i].lastDate));
 			}
-			console.log($rootScope.inbox);
-			console.log($rootScope.sent);
+			void 0;
+			void 0;
 		}
 	}
 
@@ -56,8 +54,8 @@ function($scope, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, $sessio
 	{
 		$rootScope.singleThread = data;
 		$sessionStorage.threads[$rootScope.singleThreadIndex] = data;
-		console.log('messages after: ');
-		console.log($rootScope.singleThread);
+		void 0;
+		void 0;
 		refresh();
 	});
 
@@ -65,10 +63,9 @@ function($scope, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, $sessio
     {
         $rootScope.checked = false;
         delete $rootScope.singleThread;
-        console.log($rootScope.singleThread);
+        void 0;
     }
 
-	// Changes the name of message author to 'you' if current user logged in.
 	function checkName(sender)
 	{
 		var name = sender === $sessionStorage.user.profile.name ? 'self' : sender;
@@ -77,7 +74,7 @@ function($scope, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, $sessio
 
 	$scope.send = function(status)
 	{
-		console.log($scope.message);
+		void 0;
     	var message = {'messages':
     		{
     			'message' : $scope.message, 
@@ -87,57 +84,47 @@ function($scope, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, $sessio
 
 		if ( status === 'reply' )
 		{
-	    	// Push the message body onto the returned thread - type, id, args
 			QuerySvc.push("thread", $rootScope.singleThread._id, message)
 			.then(function(res)
 			{
-				console.log(res);
+				void 0;
 				$scope.message = '';
 				$scope.successMsg = 'message sent!';
-				// refresh();
 			});
 		}
 		else if ( status === 'new' )
 		{
-			// For new threads of communication, we create a new thread
-			// Make an array of all the user ids participating in this thread
 			var thread = {};
 			thread.messages = {};
 			thread.parties = [];
-			thread.parties[0] = $sessionStorage.user._id;	// first push the sender into the party array
-			thread.parties[1] = $rootScope.viewedRoom.meta.listerID._id;	// then the primary lister
+			thread.parties[0] = $sessionStorage.user._id;	
+			thread.parties[1] = $rootScope.viewedRoom.meta.listerID._id;	
 			for(i=0; i<$rootScope.viewedRoom.roomie.length; i++)
 			{
 				thread.parties[i + 2] = $rootScope.viewedRoom.roomie[i]._id;
 			}
-			console.log("thread.parties: " + thread.parties);
-			// make the thread
+			void 0;
 			QuerySvc.post("message", thread)
 			.then(function (response)
 	        {
-	        	// bump up the current thread index so that the new data 
-	        	// returned will be
 	        	$rootScope.singleThreadIndex = $sessionStorage.threads.length;
-	        	console.log("message: " + JSON.stringify(response._id));
-	        	
-				// Push the thread id to each roomie participating in the thread - type, ids, args
+	        	void 0;
+
 				var threadPush = { 'threads': response._id };
 				QuerySvc.push("roomie", thread.parties, threadPush)
 				.then(function(res)
 				{
-					console.log(res);
-					// update the messages object of the the returned thread
+					void 0;
 		        	var message = {'messages':
 		        		{
 		        			'message' : $scope.message, 
 		        			'senderID' : $sessionStorage.user._id, 
 		        			'senderName' : $sessionStorage.user.profile.name 
 		        		}};
-		        	// Push the message body onto the returned thread - type, id, args - this will trigger the live broadcast of the msg
 					QuerySvc.push("thread", response._id, message)
 					.then(function(res)
 					{
-						console.log('thread returned: ' + res);
+						void 0;
 						$scope.showForm = false;
 			        	$scope.successMsg = "request sent!";
 			        	$scope.showSuccess = true;

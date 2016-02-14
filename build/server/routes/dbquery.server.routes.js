@@ -1,39 +1,35 @@
-// This file is the routes used by admin to verify proper roomie collections operations
 var mongoose = require('mongoose');
-// Tourist = require('../models/tourist.server.model');
-// Trip = require('../models/trip.server.model');
-// Thread = require('../models/thread.server.model');
 
 module.exports = function(app)
 {
 
 	app.get('/list/:item', function(req,res)
 	{
-		console.log("Got a GET request in list: ");
-		console.log(req.params);
+		void 0;
+		void 0;
 		var _item = require('../models/' + req.params.item + '.server.model');
 
 
 		_item.find(function(err, i)
 		{
-			if (err) return console.error(i);
-			console.log(i);
+			if (err) return void 0;
+			void 0;
 			res.json(i);
 		});
 	});
 
 	app.post('/list', function(req,res)
 	{
-		console.log('post request in /list: ');
-		console.log(req.body);
+		void 0;
+		void 0;
 		item = req.body.item;
 		var _item = require('../models/' + item + '.server.model');
 		var model = new _item(req.body.data);
-		console.log("model is: " + model);
+		void 0;
 		model.save(function(err, i)
 		{
-		  if (err) return console.error(err);
-		  console.log('This is the tourist id: ' + i._id);
+		  if (err) return void 0;
+		  void 0;
 		  res.json(i);
 		});
 	});
@@ -41,8 +37,8 @@ module.exports = function(app)
 	app.delete('/list/:item/:id', function(req,res)
 	{
 		var id = req.params.id;
-		console.log("Got a GET request in list: ");
-		console.log(id);
+		void 0;
+		void 0;
 		var _item = require('../models/' + req.params.item + '.server.model');
 		_item.remove({_id: mongoose.Types.ObjectId(id)}, function(err, doc)
 		{
@@ -50,36 +46,35 @@ module.exports = function(app)
 		});
 	});
 
-	// edit
 	app.get('/list/:item/:id', function(req,res)
 	{
 		var id = req.params.id;
 		var _item = require('../models/' + req.params.item + '.server.model');
-		console.log("Got an edit request for: ");
-		console.log(id);
+		void 0;
+		void 0;
+		void 0;
 		_item.findOne({_id: mongoose.Types.ObjectId(id)}, 
 		function(err, doc)
 		{
-		  if (err) return console.error(err);
-		  console.log(doc);
+		  if (err) return void 0;
+		  void 0;
 		  res.json(doc);
 		});
 	});
 
-	
-	app.post('/list', function(req,res)
+
+		app.post('/list', function(req,res)
 	{
 		var item = new Roomie(req.body);
 		var _item = require('../models/' + req.params.item + '.server.model');
 		item.save(function(err, doc) 
 		{
-		  if (err) return console.error(err);
-		  console.log('This is the id: ' + doc._id);
+		  if (err) return void 0;
+		  void 0;
 		  res.json(doc);
 		});
 	});
 
-	// update
 	app.put('/roomieList/:item/:id', function(req,res)
 	{
 		var id = req.params.id;
@@ -89,9 +84,6 @@ module.exports = function(app)
 			{
 				$set:
 				{
-					// key needs quotes if nested
-					// username: req.body.username,// "number.cell": req.body.number.cell
-					// snumber: {home:"12345", cell:"56789"}
 					meta: req.body.meta,
 					primary: req.body.primary,
 					profile: req.body.profile,
@@ -99,13 +91,12 @@ module.exports = function(app)
 				}
 			},
 
-			// What we do once we've done our modifications
 			function(err, doc)
 			{
 				res.json(doc);
-				console.log(doc);
+				void 0;
 			});
-		console.log("route reaches server side");	//req.body
+		void 0;	
 	});
 
 }
