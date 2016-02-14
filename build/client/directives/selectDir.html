@@ -1,0 +1,18 @@
+<div class="row">	
+	<div class="col-sm-4 match-field">
+		Gender Preference?
+	</div>
+	<div class="col-sm-4 match-field">
+		<select class="form-control" ng-model="person.match.gender.value">
+			<option value="F" ng-selected='person.match.gender.value === F'>female</option>
+			<option value="M" ng-selected='person.match.gender.value === M'>male</option>
+		</select>
+	</div>
+	<div class="col-sm-4 match-field">
+		<select class="form-control" ng-model="person.match.gender.weight">
+			<option value="1" ng-selected='person.match.gender.weight === 1'>don't care</option>
+			<option value="2" ng-selected='person.match.gender.weight === 2'>somewhat important</option>
+			<option value="3" ng-selected='person.match.gender.weight === 3'>deal breaker</option>
+		</select>
+	</div>
+</div>

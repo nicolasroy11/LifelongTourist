@@ -1,0 +1,25 @@
+{
+  "name": "roomem",
+  "version": "0.0.0",
+  "homepage": "https://github.com/nicolasroy11/Roomem",
+  "authors": [
+    "nicolasroy11 <nicolasroy11@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-google-maps": "~2.2.1",
+    "ng-simplePagination": "~1.0.3",
+    "angular-socket-io": "~0.7.0",
+    "ngstorage": "~0.3.10"
+  }
+}

@@ -1,0 +1,36 @@
+<div class="row search-nav">
+	<div class="container-fluid">
+		<div class="col-sm-2">
+			<p>find a better rommate</p>
+		</div>
+		<div class="col-sm-2">
+			<select class="form-control" ng-model="search.neighborhood">
+				<option selected disabled value="">Neighborhood</option>
+				<option selected value="Williamsburg">Williamsburg</option>
+				<option value="Bushwick">Bushwick</option>
+				<option value="Queens">Queens</option>
+				<option value="other">other</option>
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<select class="form-control" ng-model="search.numBedrooms">
+				<option selected disabled value="">Bedrooms</option>
+				<option value="1">1 Bedroom</option>
+				<option value="2">2 Bedroom</option>
+				<option value="3">3 Bedroom</option>
+				<option value="4">4 Bedroom</option>
+				<option value="5">5 Bedroom</option>
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<input class="form-control"  ng-model="search.min"type="text" name="min" placeholder="min"></input>
+		</div>
+		<div class="col-sm-2">
+			<input class="form-control"  ng-model="search.max"type="text" name="max" placeholder="max"></input>
+		</div>
+		<div class="col-sm-2">
+			<button class="btn btn-info" ui-sref="home.search({n : search.neighborhood})">Search</button></td>
+		</div>
+	</div>
+</div>
+<div ui-view="results"></div>

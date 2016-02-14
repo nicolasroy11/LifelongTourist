@@ -1,0 +1,27 @@
+<table class="table" >
+	<thead>
+		<th>Threads</th>
+	</thead>
+	<tbody ng-repeat="thread in threadList">
+		<tr>
+			<td>
+				<h5>thread ID: </h5>{{thread._id}}<br>
+				<h5>parties: </h5>{{thread.parties}}<br>
+				<h5>agent: </h5>{{thread.agent}}<br>
+				<h5>thread title: </h5>{{thread.title}}<br>
+			</td>
+		</tr>
+		<tr ng-repeat="message in thread.messages">
+					<td>
+						<h5>sender: </h5>{{message.senderName}}, 
+						<h5>status: </h5>{{message.status}}
+						<h5>message: </h5>{{message.message}}
+					</td>
+
+		</tr>
+
+
+			<td><button class="btn btn-danger" ng-click="remove(thread._id)">Remove</button></td>
+
+			</tbody>
+</table>

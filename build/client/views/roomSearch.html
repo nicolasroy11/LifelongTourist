@@ -1,0 +1,24 @@
+<div class="container list-group">
+	<div ng-repeat="room in roomList | orderBy:'-compatibility'">
+		<a class="row list-group-item search-results" ui-sref='home.roomProfile({id:room._id})'>
+			<div class="col-sm-2">
+				pic
+			</div>
+			<div class="col-sm-2">
+				available room
+			</div>
+			<div class="col-sm-1">
+				<p ng-repeat="room in room.rooms">{{ room.price }}</p>
+			</div>
+			<div class="col-sm-5">
+				{{room.excerpt}}
+			</div>
+			<div class="col-sm-2">
+				<div class="comp-circle" ng-style="{ 'background' : room.compColor }">{{room.compatibility}}%</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+
+

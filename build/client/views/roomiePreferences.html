@@ -1,0 +1,162 @@
+
+
+<div id="roomie-fields">
+<div class="container">
+		<div class="row roomie-form">
+			<div class="col-sm-6">
+
+
+
+				<div ng-repeat="match in matchFields">
+					<div class="row">	
+						<div class="col-sm-4 match-field">
+							{{ match.caption }}
+						</div>
+						<div ng-repeat="field in match.fields" class="{{ field.class }} match-field">
+							<select class="form-control"  ng-model="newObject[field.model]">
+								<option ng-repeat="s in field.w" value="{{ s.value }}" ng-selected='{{ field.model }} === {{ s.value }}'>{{ s.html }}</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+
+				<hr>
+
+				<div class="row">
+					<div class="col-sm-4 match-field">
+						Couples or Singles?
+					</div>
+					<div class="col-sm-8 match-field">
+						<select class="form-control" ng-model="person.match.couple.weight">
+							<option value="1" ng-selected='person.match.couple.weight === 1'>don't care</option>
+							<option value="2" ng-selected='person.match.couple.weight === 2'>somewhat important</option>
+							<option value="3" ng-selected='person.match.couple.weight === 3'>deal breaker</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-sm-4 match-field">
+						Gender Preference?
+					</div>
+					<div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.gender.value">
+							<option value="F" ng-selected='person.match.gender.value === F'>female</option>
+							<option value="M" ng-selected='person.match.gender.value === M'>male</option>
+						</select>
+					</div>
+					<div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.gender.weight">
+							<option value="1" ng-selected='person.match.gender.weight === 1'>don't care</option>
+							<option value="2" ng-selected='person.match.gender.weight === 2'>somewhat important</option>
+							<option value="3" ng-selected='person.match.gender.weight === 3'>deal breaker</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-sm-4 match-field">
+						Age Range?
+					</div>
+					<div class="col-sm-2 match-field">
+						<select class="form-control" ng-model="person.match.ageRange.startAge">
+							<option value="" disabled>min</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+						</select>
+					</div>
+					<div class="col-sm-2 match-field">
+						<select class="form-control" ng-model="person.match.ageRange.endAge">
+							<option value="" disabled selected>max</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+						</select>
+					</div>
+					<div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.ageRange.weight">
+							<option selected value="1">don't care</option>
+							<option value="2">somewhat important</option>
+							<option value="3">deal breaker</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-sm-4 match-field">
+						Hours Preference?
+					</div>
+					<div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.hours.value">
+							<option value="_9to5">9 to 5</option>
+							<option value="evenings">evenings</option>
+							<option value="graveyard">graveyard</option>
+							<option value="mixed">mixed</option>
+						</select>
+					</div>
+					<div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.hours.weight">
+							<option selected value="1">don't care</option>
+							<option value="2">somewhat important</option>
+							<option value="3">deal breaker</option>
+						</select>
+					</div>
+				</div>	
+				<div class="row">	
+					<div class="col-sm-4 match-field">
+						Industry Preference?
+					</div>
+					<div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.industry.value">
+							<option value="food_service">food service</option>
+							<option value="engineering">engineering</option>
+							<option value="trafficking">trafficking</option>
+							<option value="other">other</option>
+						</select>
+					</div>
+					<div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.industry.weight">
+							<option selected value="1">don't care</option>
+							<option value="2">somewhat important</option>
+							<option value="3">deal breaker</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-sm-4 match-field">
+						Pet Preference?
+					</div>
+					<div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.pets.value">
+							<option value="dogs">dogs</option>
+							<option value="cats">cats</option>
+							<option value="other">other</option>
+							<option value="other">none</option>
+						</select>
+					</div>
+					<div class="col-sm-4 match-field">
+						<select class="form-control" ng-model="person.match.pets.weight">
+							<option selected value="1">don't care</option>
+							<option value="2">somewhat important</option>
+							<option value="3">deal breaker</option>
+						</select>
+					</div>
+				</div>	
+				<div class="row">	
+					<div class="col-sm-4 match-field">
+						Smokers?
+					</div>
+					<div class="col-sm-8 match-field">
+						<select class="form-control" ng-model="person.match.pets.weight">
+							<option selected value="1">don't care</option>
+							<option value="2">somewhat important</option>
+							<option value="3">deal breaker</option>
+						</select>
+					</div>
+				</div>
+			</div>	
+
+				<div class="submit-option">
+			<input type="submit" value="save and finish later">
+			OR
+			<button class="btn btn-info" ng-click="updateMatch()">Find my roommate</button></td>
+		</div>
+</div>
+</div>

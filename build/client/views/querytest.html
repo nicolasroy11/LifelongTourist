@@ -1,0 +1,131 @@
+<table class="table"> 
+	<thead>
+		<th>ID<br>Email<br>Status<br>Has Room</th>
+		<th>Name<br>Hometown<br>Bio<br>Has Applied</th>
+		<th>Couple?</th>
+		<th>Gender</th>
+		<th>Age</th>
+		<th>Hours</th>
+		<th>Industry</th>
+		<th>Pets</th>
+		<th>Smoking</th>
+
+				<th>Action</th>
+		<th>&nbsp;</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<input class="form-control" ng-model="person._id"></input>
+				<input class="form-control" ng-model="person.username"></input>
+				<input class="form-control" ng-model="person.meta.status"></input>
+				<input class="form-control" ng-model="person.meta.hasRoom"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="person.profile.name"></input>
+				<input class="form-control" ng-model="person.profile.hometown"></input>
+				<input class="form-control" ng-model="person.profile.bio"></input>
+				<input class="form-control" ng-model="person.meta.hasApplied"></input>
+			</td>
+
+
+			<td>
+				<input class="form-control" ng-model="person.primary.couple"></input>
+				<input class="form-control" ng-model="person.match.couple.value"></input>
+				<input class="form-control" ng-model="person.match.couple.weight"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="person.primary.gender"></input>
+				<input class="form-control" ng-model="person.match.gender.value"></input>
+				<input class="form-control" ng-model="person.match.gender.weight"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="person.primary.age"></input>
+				<span>
+					<input class="form-control" ng-model="person.match.ageRange.startAge"></input>
+					 to 
+					<input class="form-control" ng-model="person.match.ageRange.endAge"></input>
+				</span>
+				<input class="form-control" ng-model="person.match.ageRange.weight"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="person.primary.hours"></input>
+				<input class="form-control" ng-model="person.match.hours.value"></input>
+				<input class="form-control" ng-model="person.match.hours.weight"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="person.primary.industry"></input>
+				<input class="form-control" ng-model="person.match.industry.value"></input>
+				<input class="form-control" ng-model="person.match.industry.weight"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="person.primary.pets"></input>
+				<input class="form-control" ng-model="person.match.pets.value"></input>
+				<input class="form-control" ng-model="person.match.pets.weight"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="person.primary.smoking"></input>
+				<input class="form-control" ng-model="person.match.smoking.value"></input>
+				<input class="form-control" ng-model="person.match.smoking.weight"></input>
+			</td>
+
+
+			<td><button class="btn btn-primary" ng-click="addRoomie()">Add Contact</button></td>
+			<td><button class="btn btn-info" ng-click="update()">Update</button></td>
+		</tr>
+
+		<tr ng-repeat="contact in kontactList">
+			<td>
+
+				{{contact._id}}<br>
+				{{contact.username}}<br>
+				{{contact.meta.status}}<br>
+				{{contact.meta.hasRoom}}
+
+							</td>
+			<td>
+				{{contact.profile.name}}<br>
+				{{contact.profile.hometown}}<br>
+				{{contact.profile.bio}}<br>
+				{{contact.meta.hasApplied}}
+			</td>
+			<td>
+				{{contact.primary.couple}}<br>
+				{{contact.match.couple.value}}<br>
+				{{contact.match.couple.weight}}
+			</td>
+			<td>
+				{{contact.primary.gender}}<br>
+				{{contact.match.gender.value}}<br>
+				{{contact.match.gender.weight}}
+			</td>
+			<td>
+				{{contact.primary.age}}<br>
+				{{contact.match.ageRange.startAge}} to {{contact.match.ageRange.endAge}}<br>
+				{{contact.match.ageRange.weight}}
+			</td>
+			<td>
+				{{contact.primary.hours}}<br>
+				{{contact.match.hours.value}}<br>
+				{{contact.match.hours.weight}}
+			</td>
+			<td>
+				{{contact.primary.industry}}<br>
+				{{contact.match.industry.value}}<br>
+				{{contact.match.industry.weight}}
+			</td>
+			<td>
+				{{contact.primary.pets}}<br>
+				{{contact.match.pets.value}}<br>
+				{{contact.match.pets.weight}}
+			</td>
+			<td>
+				{{contact.primary.smoking}}<br>
+				{{contact.match.smoking.value}}<br>
+				{{contact.match.smoking.weight}}
+			</td>
+			<td><button class="btn btn-danger" ng-click="remove(contact._id)">Remove</button></td>
+			<td><button class="btn btn-warning" ng-click="edit(contact._id)">Edit</button></td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,16 @@
+<div ng-controller="singleThreadCtrl">
+	<h1>{{ $root.singleThread.messages }}</h1>
+	<div ng-repeat="message in messages">	 
+		<div ng-show="$index>0">	
+			<h5>{{ message.senderName }} says: </h5>
+				{{ message.message }}
+		</div>
+	</div>
+	<form ng-submit="reply()">
+		<div class="form-group">
+	      <label>Message</label>
+	      <textarea type="textarea" class="form-control" ng-model="message"></textarea>
+	      <button type="submit" class="btn btn-info">Send</button>
+	    </div>
+	</form>
+</div>

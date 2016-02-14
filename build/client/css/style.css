@@ -1,0 +1,542 @@
+
+
+h1, h2, h3, h4, h5, h6
+{
+    display: inline;
+    padding: 10px;
+}
+
+input[readonly][type=checkbox]:hover
+{
+    cursor: default;
+}
+
+a
+{
+    text-decoration: none !important;
+}
+
+.list-group-item-header
+{
+    border-radius: 10px 10px 0px 0px !important;
+    border-color: #000;
+    background-color: rgba(218, 83, 125, 0.2);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.list-group-item
+{
+    text-decoration: none !important;
+    border-radius: 10px  !important;
+    border-color: rgb(230,230,230);
+    background-color: rgba(230,230,230,0.9);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+[ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
+{
+    display: none !important;
+}
+
+.hollow-button
+{
+    border: solid 1px;
+    border-radius: 5px;
+    border-color: #fff;
+    padding: 5px;
+    cursor:pointer;
+}
+
+#header-nav
+{
+	margin-top: 40px;
+}
+
+.icon-bar
+{
+	background: #000;
+}
+
+.roomie-form
+{
+	padding: 30px;
+}
+
+.roomie-form input,
+.roomie-form select
+{
+	border-radius: 5px;
+	width: 80%;
+	margin-bottom: 10px;
+}
+
+.bio-label
+{
+	display: block;
+}
+
+.bio-text
+{
+	width: 100%;
+}
+
+.submit-option
+{
+	text-align: center;
+	margin-top: 40px;
+}
+
+button
+{
+	border-radius: 5px;
+}
+
+.age-label
+{
+	display: block;
+}
+
+.age-to
+{
+	display: inline;
+	text-align: center;
+	margin: 24px;
+}
+
+.age-group>select
+{
+	width: 30%;
+	display: inline;
+}
+
+#age-max
+{
+	text-align: right
+}
+
+.additional-label
+{
+	display: block;
+}
+
+.additional-text
+{
+	width: 100%;
+}
+
+#roomie-info .roomie-params
+{
+}
+
+.roomie-photo
+{
+	margin-top: 90px;
+	width: 100%;
+	min-height: 240px;
+	border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.display-bio-text
+{
+	border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.room-form
+{
+	padding: 30px;
+}
+
+.room-form input,
+.room-form select
+{
+	border-radius: 5px;
+	width: 80%;
+	margin-bottom: 10px;
+}
+
+input[type="checkbox"]
+{
+	border-radius: 0px;
+	width: 10%;
+	margin-bottom: 0px;
+	display: inline;
+}
+
+.apt-desc-label
+{
+	display: block;
+}
+
+.apt-desc-text
+{
+	width: 100%;
+}
+
+.room-form .listing-name
+{
+	margin-top: 30px;
+	width: 100%;
+}
+
+
+select
+{
+    border: 0 !important;  
+    -webkit-appearance: none;  
+    -moz-appearance: none; 
+    background: #fff;
+    color: #000;
+    padding: 5px;
+    box-shadow: inset 0 0 2px rgba(000,000,000, 0.5);
+}
+
+.match-field>select
+{
+	width: 100%;
+	display: block;
+	border: 0 !important;  
+    -webkit-appearance: none;  
+    -moz-appearance: none; 
+    background: #fff;
+    color: #000;
+    padding: 5px;
+    box-shadow: inset 0 0 2px rgba(000,000,000, 0.5);
+}
+
+.angular-google-map-container
+{
+	height: 400px;
+}
+
+
+
+
+.auth-modal
+{
+	padding: 20px;
+}
+
+
+.full button span
+{
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+ }
+
+ .partially button span
+ {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+ }
+
+ .no-button
+ {
+ 	background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+ }
+
+ .comp-circle
+ {
+ 	height: 90px;
+ 	width: 90px;
+ 	padding-top: 30px;
+ 	text-align: center;
+ 	border-radius: 45px;
+ 	color: #fff;
+ 	font-size: 20px;
+ }
+
+.greetingBanner
+{
+	padding-left: 20px;
+	color: #ddd;
+	background: #333;
+}
+
+.messages
+{
+	display: inline;
+	padding-left: 20px;
+}
+
+
+.nav-tabs
+{
+    border: none;
+}
+
+
+
+#top-menu .btn-group
+{
+    margin-top: 15px;
+}
+
+
+
+.roomie-nav a,
+.primary-nav a,
+.about-nav a,
+.search-nav
+{
+    color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+
+.roomie-nav li > a,
+.primary-nav li > a,
+.search-nav li > a,
+.about-nav li > a,
+.roomie-nav,
+.primary-nav,
+.search-nav,
+.about-nav
+{
+    border: none !important;
+}
+
+.search-nav
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+.ng-pageslide
+{
+    position: fixed;
+    background-color: rgba(5,5,5,0.9);
+    color: #eee;
+    overflow-y: scroll !important;
+}
+
+body.ng-pageslide-body-open::before
+{
+    content: '.';
+    display: block;
+    position: absolute;
+    top: 0;
+    background-color: rgb(0,0,0);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0.5;
+    transition: opacity 1s;
+    position: fixed;
+    background: #eee;
+    overflow-y: scroll !important;
+}
+
+body.ng-pageslide-body-closed::before
+{
+    transition: opacity 1s;
+    opacity: 0;
+    content: '.';
+    display: block;
+    position: absolute;
+    top: 0;
+    background-color: rgb(0,0,0);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+#myCarousel
+{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 800px;
+    max-height: 800px;
+}
+
+.room-section
+{
+    border: 1px solid #eee;
+    padding: 10px;
+    margin: 10px;
+    background: #eee;
+    border-radius: 5px;
+}
+
+.search-results
+{
+    background: #eee;
+    -webkit-transition: background 0.3s linear;
+}
+
+.search-results:hover
+{
+    background: #ccc !important;
+}
+
+.sidenav-link
+{
+    display: block;
+    color: #333;
+    font-size: 16px;
+    padding: 20px;
+    -webkit-transition: color 0.3s linear;
+}
+
+.sidenav-link:hover
+{
+    color: #777;
+}
+
+.thread-thumbnail
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px
+}
+
+.profile-pic
+{
+    
+    
+    margin-bottom: 40px;
+    -webkit-box-reflect: below 2px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(250, 250, 250, 0.3)));
+}
+
+
+
+
+
+
+
+#signup-bar > .container
+{
+    color: #fff;
+    background: rgb(158, 218, 111);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px 5px 5px 15px;
+    margin-top: 10px;
+}
+
+#signup-bar input[type=text]
+{
+    color: rgb(158, 218, 111);
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px 5px 5px 15px;
+}
+
+#signup-bar ::-webkit-input-placeholder
+{
+    color: rgb(158, 218, 111);
+}
+
+#hero
+{
+    
+    background: url('../img/hero.jpeg') top left repeat;
+    height: 300px;
+    display: block;
+}
+
+.blk-hollow-btn
+{
+    text-align: center;
+    color: #000;
+    padding: 10px;
+    background: #fff;
+    border: 4px solid #000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+#main-content .yellow-rect
+{
+    color: #fff;
+    background: rgb(253, 170, 32);
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 115px 115px 115px 115px;
+    margin-top: 10px;
+}
+
+#main-content .text-content
+{
+
+}
+
+#main-content .roomie-graphic
+{
+
+}
+
+#main-content .tell-us
+{
+
+}
+
+#main-content .fb-comment
+{
+
+}
+
+#main-content .red-rect
+{
+    color: #fff;
+    background: rgb(218, 83,125);
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 50px;
+    margin-top: 10px;
+}
+
+#main-content .about
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
