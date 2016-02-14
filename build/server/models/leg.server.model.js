@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var TripSchema = new Schema(
+var LegSchema = new Schema(
 {
 	Tourists:
     [{
@@ -21,13 +21,8 @@ var TripSchema = new Schema(
     {
     	type: String
     },
-	legs: 
-	[{
-    	type: Schema.ObjectId,
-    	ref: 'Leg'
-    }],
 });
 
 
-var Trip = mongoose.model("Trip", TripSchema);
-module.exports = Trip;
+var Leg = mongoose.model("Leg", LegSchema);
+module.exports = Leg;

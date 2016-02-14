@@ -4,6 +4,7 @@ var passport = require('./config/passport');
 // DB models
 var Tourist = require('./server/models/tourist.server.model');
 var Trip = require('./server/models/trip.server.model');
+var Leg = require('./server/models/leg.server.model');
 var Thread = require('./server/models/thread.server.model');
 
 // login dependencies

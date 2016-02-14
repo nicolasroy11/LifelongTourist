@@ -3,6 +3,7 @@ var passport = require('./config/passport');
 
 var Tourist = require('./server/models/tourist.server.model');
 var Trip = require('./server/models/trip.server.model');
+var Leg = require('./server/models/leg.server.model');
 var Thread = require('./server/models/thread.server.model');
 
 var app = express();
