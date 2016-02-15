@@ -11,7 +11,7 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 			void 0;
 			if ($sessionStorage.session)
 			{
-				var id = $sessionStorage.user.id;
+				var id = $sessionStorage.user._id;
 				$http.get('/get/' + model + '/' + id)
 				.then(function(response)
 				{

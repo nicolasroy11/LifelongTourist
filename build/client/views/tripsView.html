@@ -1,0 +1,29 @@
+<div class='messages col-sm-10'>
+	{{ $root.numThreads }} new messages
+		<div class="list-group row">
+			<div class="list-group-item-header">trips</div>
+			<a  ng-repeat="trip in trips | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage" ng-click="displaySingle('inbox', $index)" class="list-group-item">
+				<div class="row">
+					<div class="col-sm-1">
+					</div>
+					<div class="col-sm-2">
+						<h5 class="list-group-item-heading">{{ trip.title }}</h5>
+					</div>
+					<div class="col-sm-1">
+						<img class="thread-thumbnail" src="../img/anon.jpeg" alt="Chania">
+					</div>
+					<div class="col-sm-4">
+						<h5 class="list-group-item-heading">{{ trip.lastSender }}</h5>
+					</div>
+				</div>
+			</a>
+			</div>
+		<ul class="pagination">
+			<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+				<li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}">
+					<a href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a>
+				</li>
+			<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+
+	</div>

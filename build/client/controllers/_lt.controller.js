@@ -121,10 +121,17 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 		url:         '/primary',
 		templateUrl: '../../views/touristForm.html'
     })
-    .state('home.tourist.trips',
+    .state('home.tourist.viewTrips',
 	{
-		url:         '/match',
-		templateUrl: '../../views/touristPreferences.html'
+		url:         '/viewTrips/:id',
+		controller:  'tripCtrl',
+		templateUrl: '../../views/tripsView.html',
+    })
+    .state('home.tourist.addTrip',
+	{
+		url:         '/addTrip',
+		controller:  'tripCtrl',
+		templateUrl: '../../views/tripForm.html'
     })
     .state('home.tourist.messages',
 	{

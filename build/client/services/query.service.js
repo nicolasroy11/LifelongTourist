@@ -115,28 +115,17 @@ function post(type, object)
 function push(type, id, args)
 {
 	var array;
-	if( Object.prototype.toString.call( id) === '[object Array]' )
+	if( Object.prototype.toString.call(id) === '[object Array]' )
 	{
     	array = true;
 	}
 	var defer = $q.defer();
-	var path;
-	if(type === "roomie")
-	{
-		path = '/roomiePush/';
-	}
-	else if(type === "room")
-	{
-		path = '/roomPush/';
-	}
-	else if(type === "thread")
-	{
-		path = '/messagePush/';
-	}
+	var path = '/push/';
 	if (!array)
 	{
+		pushData = {'model': type, 'data': args}
 		path = path + id;
-		$http.put(path, args)
+		$http.put(path, pushData)
 		.success(function(data)
 		{
 			defer.resolve(data);
@@ -163,9 +152,7 @@ function push(type, id, args)
 			defer.reject();
 		});
 	}
-
-
-		return defer.promise;
+	return defer.promise;
 }
 
 function populate(type, id, args)

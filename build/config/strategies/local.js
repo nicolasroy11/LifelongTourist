@@ -11,6 +11,7 @@ module.exports = function()
 			username: username
 		})
 		.populate('threads')	
+		.populate('trips')	
 		.exec(
 		function(err, user)
 		{

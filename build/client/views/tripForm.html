@@ -1,97 +1,41 @@
 <div id="room-fields">
-	<form method="post">
+	<div class="container">
+	<div class="col-md-6">
+	<form>
 		<div class="row room-form">
-			<div class="col-sm-4">
 				<h3>step 1: Describe your trip</h3>
-
+				<input type="text"  class="form-control" ng-model="trip.title" placeholder="Give your trip a title!"><br>
+				<input type="checkbox" ng-model="single">single destination trip?<br>
 				<h4>From</h4>
-		    <div class="row" ng-controller="datePickerCtrl">
-		        <div class="col-md-6">
-		            <p class="input-group">
-		              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-		              <span class="input-group-btn">
-		                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-		              </span>
-		            </p>
+			    <div class="row" ng-controller="datePickerCtrl">
+
+			        			            <p class="input-group">
+			              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.dateFrom" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+			              <span class="input-group-btn">
+			                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			              </span>
+			            </p>
+
 		        </div>
-	        </div>
-			<input type="text" ng-model="room.zip" name="zip" placeholder="zip"><br>
-				<select ng-model="room.profile.numOfRooms">
-					<option value="" disabled selected>number of bedrooms</option>
-					<option value="1">1 bedroom</option>
-					<option value="2">2 bedrooms</option>
-					<option value="3">3 bedrooms</option>
-					<option value="4">4 bedrooms</option>
-				</select>
-				<select ng-model="room.profile.numOfRoommates">
-					<option value="" disabled selected>number of roommates</option>
-					<option value="1">1 roommate</option>
-					<option value="2">2 roommates</option>
-					<option value="3">3 roommates</option>
-					<option value="4">4 roommates</option>
-				</select>
-				<select ng-model="room.match.stuff">
-					<option value="" disabled selected>how much can you fit in the room?</option>
-					<option value="small">not much</option>
-					<option value="med_sm">1 bed</option>
-					<option value="med_lg">1 bed and 1 couch</option>
-					<option value="lg">a full bedroom set</option>
-				</select>
-				<select ng-model="room.match.securityDep">
-					<option value="" disabled selected>security deposit?</option>
-					<option value="small">yes</option>
-					<option value="med_sm">no</option>
-				</select>
-				<fieldset data-ng-repeat="roomie in roomies track by $index">
-					<input type="email" ng-model="roomie.email" name="" placeholder="add roomie email" required>
-					<span ng-show="roomie.email.$error.required">Email is required.</span>
-					<span ng-show="roomie.email.$error.email">Invalid email address.</span>
-					<button class="remove" ng-click="removeEmail($index)">remove</button>
-				</fieldset>
-   				<button class="addfields" ng-click="addEmail()">add roomie</button>
-				<div id="emailsDisplay">{{ roomies }}</div>
-				<div id="emailsDisplay">{{ rooms.roomie }}</div>
+		        <h4>To</h4>
+			    <div class="row" ng-controller="datePickerCtrl">
+			            <p class="input-group">
+			              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.dateTo" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+			              <span class="input-group-btn">
+			                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			              </span>
+			            </p>
+		        </div>
 
-				<fieldset data-ng-repeat="avail in availRooms track by $index">
-					<input type="text" ng-model="avail.price" name="" placeholder="add available room" required>
-					<span ng-show="avail.$error.required">price is required.</span>
-					<button class="remove" ng-click="removeAvailRoom($index)">remove</button>
-				</fieldset>
-   				<button class="addfields" ng-click="addAvailRoom()">add room</button>
-				<div id="roomsDisplay">{{ availRooms }}</div>
-				<div id="roomsDisplay">{{ availRooms.price }}</div>
+		        		        <label for="apt-desc" class="apt-desc-label">briefly describe this trip</label>
+		        <textarea  class="form-control" rows="10" class="apt-desc-text" id="apt-desc" ng-model="trip.desc"></textarea>
 
-
+				  	<div class="col-sm-4">
+				  		<button class="btn btn-primary" ng-click="addTrip()">Add trip</button>
+				  	</div>
 			</div>
-			<div class="col-sm-8">
-				<div class="row">
-					<div class="col-sm-4">
-						<input type="checkbox" name="hot-water" ng-model="room.inclusions.hotWater">hot water included<br>
-		  				<input type="checkbox" name="electricity" ng-model="room.inclusions.electricity">electricity included<br>
-		  				<input type="checkbox" name="laundry" ng-model="room.inclusions.laundry">laundry<br>
-		  				<input type="checkbox" name="elevator" ng-model="room.inclusions.elevator">elevator<br>
-		  				<input type="checkbox" name="backyard" ng-model="room.inclusions.backyard">backyard<br>
-		  				<input type="checkbox" name="rooftop" ng-model="room.inclusions.rooftop">rooftop<br>
-				  	</div>
-				  	<div class="col-sm-4">
-						<input type="checkbox" name="balcony" ng-model="room.inclusions.balcony">balcony<br>
-		  				<input type="checkbox" name="priv_ent" ng-model="room.inclusions.privEntrance">private entrance<br>
-		  				<input type="checkbox" name="parking" ng-model="room.inclusions.parking">parking<br>
-		  				<input type="checkbox" name="gym" ng-model="room.inclusions.gym">gym<br>
-		  				<input type="checkbox" name="desk" ng-model="room.inclusions.desk">front desk<br>
-		  				<input type="checkbox" name="handicap" ng-model="room.inclusions.handicapAcc">handicap accessible<br>
-				  	</div>
-				  	<div class="col-sm-4">
-				  		<td><button class="btn btn-primary" ng-click="addRoom()">Add room</button></td>
-				  		<br><br>OR<br><br>
-						<input type="submit" value="save and finish later">
-				  	</div>
-				  </div>
-			  	<input type="text" ng-model="room.profile.listingName" class="listing-name" name="listing-name" placeholder="listing name (this is the first thing people will see when they search for appartments)"><br>
-				<label for="apt-desc" class="apt-desc-label">about the room and apartment</label>
-				<textarea rows="10" class="apt-desc-text" id="apt-desc" ng-model="room.profile.about"></textarea>
-
-							</div>
 		</div>
 	</form>
+	</div>
+	</div>
 </div>

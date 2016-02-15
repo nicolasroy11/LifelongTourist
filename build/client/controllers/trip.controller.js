@@ -2,6 +2,7 @@ angular.module('app').controller('tripCtrl',
 ['$scope', '$http', 'uiGmapGoogleMapApi', 'MatchSvc', 'AddRoomies', '$q', '$timeout', 'UpdateSvc', 'QuerySvc', '$sessionStorage',
 function($scope, $http, uiGmapGoogleMapApi, MatchSvc, AddRoomies, $q, $timeout, UpdateSvc, QuerySvc, $sessionStorage)
 	{
+		var model = 'trip';
 
 		if ( $sessionStorage.session )
 		{
@@ -37,6 +38,69 @@ function($scope, $http, uiGmapGoogleMapApi, MatchSvc, AddRoomies, $q, $timeout, 
 			void 0;
 			$scope.availRooms.splice(index, 1);
 		};
+
+		$scope.data = {};
+		$scope.trip = {};
+		$scope.data.dateFrom = new Date();
+		$scope.data.dateTo = new Date();
+
+		var dateParse = function(date)
+		{
+			var month_names = [
+                            'January',
+                            'February',
+                            'March',
+                            'April',
+                            'May',
+                            'June',
+                            'July',
+                            'August',
+                            'September',
+                            'October',
+                            'November',
+                            'December'
+                        ];
+			var day = date.getDate();
+			var month = month_names[date.getMonth()];
+			var year = date.getFullYear();
+			return month + ' ' + day + ', ' + year;
+		}
+
+		$scope.addTrip = function()
+		{
+			if ( !$sessionStorage.session )
+			{
+				void 0;
+			}
+			else
+			{
+
+								$scope.trip.fromDate = dateParse($scope.data.dateFrom);
+				$scope.trip.toDate = dateParse($scope.data.dateTo);
+				void 0;
+				$scope.trip.lister = $sessionStorage.user._id;
+				$http.post('/post', {"model": model, "data": $scope.trip})
+				.then(function(response)
+				{
+					void 0;
+					void 0;
+
+
+
+
+					var tripPush = { 'trips': response.data._id };
+					QuerySvc.push("tourist", uid, tripPush)
+					.then(function(res)
+			        {
+			        	current = res;
+						$sessionStorage.user = current;
+			        });
+
+
+
+				});
+			}
+		} 
 
 
 		$scope.addRoom = function()

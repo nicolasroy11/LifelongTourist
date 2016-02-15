@@ -1,6 +1,7 @@
 <table class="table" > 
 	<thead>
-		<th>Tourist Name<br>Tourist ID</th>
+		<th>Trip title</th>
+		<th>Tourist ID</th>
 		<th>From date<br>To date</th>
 		<th>Description</th>
 		<th>Destinations</th>
@@ -11,8 +12,10 @@
 	<tbody>
 		<tr>
 			<td>
-				<input class="form-control" ng-model="item.Tourists[0]._id"></input>
-				<input class="form-control" ng-model="item.Tourists[0].Name"></input>
+				<input class="form-control" ng-model="item.title"></input>
+			</td>
+			<td>
+				<input class="form-control" ng-model="item.lister"></input>
 			</td>
 
 						<td>
@@ -31,13 +34,15 @@
 		</tr>
 		<tr ng-repeat="trip in list">
 			<td>
-				trip ID: {{trip._id}}<br>
-				{{trip.destinations.city}}<br>
-				{{trip.destinations.country}}<br>
+				title: {{trip.title}}
 			</td>
 			<td>
-				{{trip.destinations.fromDate}}<br>
-				{{trip.destinations.toDate}}
+				trip ID: {{trip._id}}<br>
+				lister ID: {{trip.lister}}<br>
+			</td>
+			<td>
+				{{trip.fromDate}}<br>
+				{{trip.toDate}}
 			</td>
 			<td>
 				{{trip.desc}}

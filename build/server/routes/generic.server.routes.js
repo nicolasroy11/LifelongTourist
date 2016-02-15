@@ -24,6 +24,22 @@ module.exports = function(app)
 		});
 	});
 
+	app.post('/post', function(req,res)
+	{
+		void 0;
+		void 0;
+		model = req.body.model;
+		var _model = require('../models/' + model + '.server.model');
+		var Model = new _model(req.body.data);
+		void 0;
+		Model.save(function(err, i)
+		{
+		  if (err) return void 0;
+		  void 0;
+		  res.json(i);
+		});
+	});
+
 	app.put('/update/:id', function(req,res)
 	{
 		var id = req.params.id,
@@ -45,19 +61,28 @@ module.exports = function(app)
 	});
 
 
+	app.put('/push/:id', function(req,res)
+	{	
+		var id = req.params.id,
+			model = req.body.model,
+			Model = require('../models/' + model + '.server.model');
+		void 0;
+		void 0;
+		Model.findByIdAndUpdate(
+			id,
 
-		app.post('/roomie', function(req,res)
-	{
-		var roomie = new Roomie(req.body);
+			{$push: req.body.data},
+			{ new: true },
 
-		roomie.save(function(err, roomie) 
-		{
-		  if (err) return void 0;
-		  void 0;
-		  res.json(roomie);
-		});
+			function(err, doc)
+			{
+				if(err)
+				{
+			        void 0;
+			    }
+				res.json(doc);
+			});
 	});
-
 
 
 	app.post('/roomielogin', function(req,res)

@@ -22,6 +22,10 @@ var TripSchema = new Schema(
 	{
         type: Date
     },
+    title:
+    {
+        type: String
+    },
     desc:
     {
     	type: String
@@ -30,6 +34,10 @@ var TripSchema = new Schema(
 	[{
     	type: Schema.ObjectId,
     	ref: 'Leg'
+    }],
+    tags:
+    [{
+        type: String
     }],
 });
 
