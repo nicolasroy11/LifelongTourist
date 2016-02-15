@@ -35,7 +35,7 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 
 		$scope.updatePrimary = function()
 		{
-			var id = $sessionStorage.user.id;
+			var id = $sessionStorage.user._id;
 			void 0;
 			void 0;
 			void 0;
@@ -46,19 +46,6 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 				void 0;
 				$sessionStorage.user = response.data;
 				refresh();
-			});
-		}
-
-		$scope.updateMatch = function()
-		{
-			var id = sessionStorage.getItem('userID');
-			void 0;
-			$http.put('/roomieMatch/' + id, $scope.person).success(function(response)
-			{
-				void 0;
-					window.location.hash = "#roomPost";
-
-								refresh();
 			});
 		}
 

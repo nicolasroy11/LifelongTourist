@@ -124,7 +124,7 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
     .state('home.tourist.viewTrips',
 	{
 		url:         '/viewTrips/:id',
-		controller:  'tripCtrl',
+		controller:  'tripsViewCtrl',
 		templateUrl: '../../views/tripsView.html',
     })
     .state('home.tourist.addTrip',

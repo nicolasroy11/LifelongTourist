@@ -1,6 +1,6 @@
-angular.module('app').controller('tripCtrl', 
-['$scope', '$http', 'uiGmapGoogleMapApi', 'MatchSvc', 'AddRoomies', '$q', '$timeout', 'UpdateSvc', 'QuerySvc', '$sessionStorage',
-function($scope, $http, uiGmapGoogleMapApi, MatchSvc, AddRoomies, $q, $timeout, UpdateSvc, QuerySvc, $sessionStorage)
+angular.module('app').controller('tripsViewCtrl', 
+['$scope', '$http', 'uiGmapGoogleMapApi', '$rootScope', 'QuerySvc', '$sessionStorage','Pagination', 
+function($scope, $http, uiGmapGoogleMapApi, $rootScope, QuerySvc, $sessionStorage, Pagination)
 {
 	$rootScope.pagination = Pagination.getNew(7);
 	$scope.isCollapsed = true;
@@ -8,16 +8,17 @@ function($scope, $http, uiGmapGoogleMapApi, MatchSvc, AddRoomies, $q, $timeout, 
 	var model = 'trip';
 	var refresh = function()
 	{
-		if ( sessionStorage.session )
+		if ( $sessionStorage.session )
 		{
-			var uid = sessionStorage.user._id;
-			$scope.trips = sessionStorage.user.trips;
+			void 0;
+			var uid = $sessionStorage.user._id;
+			$scope.trips = $sessionStorage.user.trips;
 		}
 		else
 		{
 			void 0
 		}
 	};
-
+	refresh();
 
 	}]);

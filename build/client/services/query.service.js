@@ -112,7 +112,7 @@ function post(type, object)
 	return defer.promise;
 }
 
-function push(type, id, args)
+function push(model, id, args)
 {
 	var array;
 	if( Object.prototype.toString.call(id) === '[object Array]' )
@@ -123,18 +123,13 @@ function push(type, id, args)
 	var path = '/push/';
 	if (!array)
 	{
-		pushData = {'model': type, 'data': args}
+		pushData = {'model': model, 'data': args}
 		path = path + id;
 		$http.put(path, pushData)
-		.success(function(data)
+		.then(function(res)
 		{
-			defer.resolve(data);
+			defer.resolve(res.data);
 		})
-		.error(function()
-		{
-			user = false;
-			defer.reject();
-		});
 	}
 	else
 	{

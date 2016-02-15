@@ -7,10 +7,6 @@ function($rootScope, $sessionStorage, QuerySvc)
 		$sessionStorage.session = true;
 		$sessionStorage.user = user;
 		void 0;
-		$sessionStorage.threads = user.threads;
-		void 0;
-		$sessionStorage.trips = user.trips;
-		void 0;
 		$rootScope.loggedIn = true;
 	}
 

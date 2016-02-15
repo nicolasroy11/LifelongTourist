@@ -1,6 +1,6 @@
 angular.module('app').controller('tripCtrl', 
-['$scope', '$http', 'uiGmapGoogleMapApi', 'MatchSvc', 'AddRoomies', '$q', '$timeout', 'UpdateSvc', 'QuerySvc', '$sessionStorage',
-function($scope, $http, uiGmapGoogleMapApi, MatchSvc, AddRoomies, $q, $timeout, UpdateSvc, QuerySvc, $sessionStorage)
+['$scope', '$http', 'uiGmapGoogleMapApi', 'AddRoomies', '$q', '$timeout', 'UpdateSvc', 'QuerySvc', '$sessionStorage',
+function($scope, $http, uiGmapGoogleMapApi, AddRoomies, $q, $timeout, UpdateSvc, QuerySvc, $sessionStorage)
 	{
 		var model = 'trip';
 
