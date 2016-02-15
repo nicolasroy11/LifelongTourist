@@ -108,21 +108,20 @@ app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvid
 	{
 		url:         'tourist',
 		abstract: true,
-		controller: 'touristCtrl',
-		templateUrl: '../../views/_nav_tourist.html',
+		templateUrl: '../../views/_sidenav_profile.html'
     })
     .state('home.tourist.profile',
 	{
-		url: 	'/profile',
-		abstract: true,
-		templateUrl: '../../views/_sidenav_profile.html'
+		url:         '/primary',
+		controller: 'touristCtrl',
+		templateUrl: '../../views/touristForm.html'
     })
-	.state('home.tourist.profile.primary',
+	.state('home.tourist.primary',
 	{
 		url:         '/primary',
 		templateUrl: '../../views/touristForm.html'
     })
-    .state('home.tourist.profile.match',
+    .state('home.tourist.trips',
 	{
 		url:         '/match',
 		templateUrl: '../../views/touristPreferences.html'

@@ -1,13 +1,10 @@
 <div class="row">
 	<div class="col-sm-4">
-		<div>Hi you</div>
-		<img src="../img/falls.jpeg" class="profile-pic"></img>
 		<form name="form">
-		  <div class="button" ngf-select ngf-change="test('got it!')" ng-model="file" name="file" ngf-max-size="20MB" ngf-min-height="100" ngf-fix-orientation="false" ngf-resize="{width: 500, height: 500}">Select</div>
-		  <button type="submit" ng-click="submit()">submit one</button>
 		</form>
-		<a ui-sref="home.tourist.profile.primary" class="sidenav-link">Primary</a>
-		<a ui-sref="home.tourist.profile.match" class="sidenav-link">Match</a>
+		<a ui-sref="home.tourist.profile" class="sidenav-link">profile</a>
+		<a ui-sref="home.tourist.trips" class="sidenav-link">my trips</a>
+		<a ui-sref="home.tourist.messages.inbox" class="sidenav-link">messages</a></li>
 	</div>
 	<div class="col-sm-8">
 		<div ui-view></div>

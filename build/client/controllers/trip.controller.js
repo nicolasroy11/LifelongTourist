@@ -7,7 +7,7 @@ function($scope, $http, uiGmapGoogleMapApi, MatchSvc, AddRoomies, $q, $timeout, 
 		{
 			var current = $sessionStorage.user;
 			var uid = $sessionStorage.user._id;
-			$scope.room = $sessionStorage.room;
+			$scope.trips = $sessionStorage.trips;
 		}
 
 		$scope.roomies = [];

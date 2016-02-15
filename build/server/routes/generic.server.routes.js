@@ -1,47 +1,62 @@
 var mongoose = require('mongoose');
-var Roomie = require('../models/roomie.server.model');
 
 module.exports = function(app)
 {
 
-	app.get('/roomie/:id', function(req,res)
+	app.get('/get/:model/:id', function(req,res)
 	{
 		var id = req.params.id;
-		var query  = Roomie.where({ _id: id });
-		void 0;
-		query.findOne(function(err, person) 
+		var Model = require('../models/' + req.params.model + '.server.model');
+		var query  = Model.where({ _id: id });
+		query.findOne(function(err, doc) 
 		{
-			if (err) return void 0;
-			if (person)
+			if (err) return res.json(err);
+			if (doc)
 			{
-				person = person.toObject();
-				delete person.password;
-				delete person.salt;
-				return res.json(person);
-				res.json(person);
-			}
-			else
-			{
-			}
-
-					});
+				if (req.params.model === 'tourist')
+				{
+					doc = doc.toObject();
+					delete doc.password;
+					delete doc.salt;
+				}
+				return res.json(doc);
+			}		
+		});
 	});
 
-
-	app.post('/roomie', function(req,res)
+	app.put('/update/:id', function(req,res)
 	{
-			var roomie = new Roomie(req.body);
-
-			roomie.save(function(err, roomie) 
+		var id = req.params.id,
+			model = req.body.model,
+			Model = require('../models/' + model + '.server.model');
+		Model.findOneAndUpdate(
+			{_id: mongoose.Types.ObjectId(id)},
+			req.body.data,
+			{ new: true },
+			function(err, doc)
 			{
-			  if (err) return void 0;
-			  void 0;
-			  res.json(roomie);
+				if(err)
+				{
+			        void 0;
+			    }
+				res.json(doc);
+				void 0;
 			});
 	});
 
 
 
+		app.post('/roomie', function(req,res)
+	{
+		var roomie = new Roomie(req.body);
+
+		roomie.save(function(err, roomie) 
+		{
+		  if (err) return void 0;
+		  void 0;
+		  res.json(roomie);
+		});
+	});
 
 
 
@@ -63,22 +78,21 @@ module.exports = function(app)
 
 
 
-	app.put('/roomiePrimary/:id', function(req,res)
+	app.put('/touristPrimary/:id', function(req,res)
 	{
 		var id = req.params.id;
 		void 0;
-
-				Roomie.findOneAndUpdate(
+		void 0;	
+		void 0;
+		Tourist.findOneAndUpdate(
 			{_id: mongoose.Types.ObjectId(id)},
 
 			{
 				$set: 	
 				{
-					primary: req.body.primary,
 					profile: req.body.profile,
 				}
 			},
-
 			function(err, doc)
 			{
 				res.json(doc);
@@ -86,48 +100,7 @@ module.exports = function(app)
 			});
 	});
 
-	app.put('/roomieMatch/:id', function(req,res)
-	{
-		var id = req.params.id;
-		void 0;
 
-				Roomie.findOneAndUpdate(
-			{_id: mongoose.Types.ObjectId(id)},
-
-			{
-				$set: 	
-				{
-					match: req.body.match
-				}
-			},
-
-			function(err, doc)
-			{
-				res.json(doc);
-				void 0;
-			});
-	});
-
-	app.put('/roomieUpdate/:id', function(req,res)
-	{
-		var id = req.params.id;
-		void 0;
-		Roomie.findOneAndUpdate(
-			{_id: mongoose.Types.ObjectId(id)},
-
-			req.body,
-			{ new: true },
-
-			function(err, doc)
-			{
-				if(err)
-				{
-			        void 0;
-			    }
-				res.json(doc);
-				void 0;
-			});
-	});
 
 	app.put('/roomiePush/', function(req,res)
 	{

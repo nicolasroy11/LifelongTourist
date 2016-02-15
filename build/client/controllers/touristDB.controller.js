@@ -54,12 +54,13 @@ function($scope, $http, $state)
 		$scope.update = function()
 		{
 			void 0;
-			$http.put('/list/' + $scope.person._id, $scope.person).success(function(response)
+			var update = {'model' : 'tourist', 'data': {'profile' : $scope.item.profile}}
+			$http.put('/update/' + $scope.item._id, $update)
+			.then(function(response)
 			{
 				void 0;
 				refresh();
 			});
 		}
 
-
-			}]);
+	}]);

@@ -2,6 +2,7 @@ angular.module('app').controller('touristCtrl',
 ['$scope', '$http', 'Upload', '$rootScope', 'SessionSvc', '$sessionStorage',
 function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 	{
+		var model = 'tourist';
 
 
 
@@ -10,12 +11,12 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 			void 0;
 			if ($sessionStorage.session)
 			{
-				var id = sessionStorage.getItem('userID');
-				$http.get('/roomie/' + id).success(function(response)
+				var id = $sessionStorage.user.id;
+				$http.get('/get/' + model + '/' + id)
+				.then(function(response)
 				{
-					$scope.person = response;
+					$scope.person = response.data;
 					void 0;
-					$scope.matchFields = genMatchF();
 				});
 			}
 			else
@@ -34,12 +35,16 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 
 		$scope.updatePrimary = function()
 		{
-			var id = sessionStorage.getItem('userID');
+			var id = $sessionStorage.user.id;
 			void 0;
-			$http.put('/roomiePrimary/' + id, $scope.person).success(function(response)
+			void 0;
+			void 0;
+			var update = {'model' : 'tourist', 'data': {'profile' : $scope.person.profile}}
+			$http.put('/update/' + id, update)
+			.then(function(response)
 			{
 				void 0;
-				window.location.hash = "#match";
+				$sessionStorage.user = response.data;
 				refresh();
 			});
 		}

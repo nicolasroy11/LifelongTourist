@@ -56,10 +56,12 @@ function($scope, $http, $sessionStorage, $state)
 		$scope.update = function()
 		{
 			void 0;
-			$http.put('/list/' + model + '/' + $scope.item._id, $scope.item)
+			var update = {'model' : 'tourist', 'data': {'profile' : $scope.item.profile}}
+			$http.put('/update/' + $scope.item._id, update)
 			.then(function(response)
 			{
 				void 0;
+				$sessionStorage.user = response.data;
 				refresh();
 			});
 		}

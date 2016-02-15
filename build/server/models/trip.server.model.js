@@ -4,7 +4,12 @@ var Schema = mongoose.Schema;
 
 var TripSchema = new Schema(
 {
-	Tourists:
+	lister:
+    {
+    	type: Schema.ObjectId,
+    	ref: 'Tourist'
+    },
+	tourists:
     [{
     	type: Schema.ObjectId,
     	ref: 'Tourist'

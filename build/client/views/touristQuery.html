@@ -2,7 +2,7 @@
 	<thead>
 		<th>ID<br>Email</th>
 		<th>Name<br>Hometown<br>Bio</th>
-		<th>Gender</th>
+		<th>Gender<br>Occupation</th>
 
 				<th>Action</th>
 		<th>&nbsp;</th>
@@ -19,7 +19,8 @@
 				<input class="form-control" ng-model="item.profile.bio"></input>
 			</td>
 			<td>
-				<input class="form-control" ng-model="item.primary.gender"></input>
+				<input class="form-control" ng-model="item.profile.gender"></input>
+				<input class="form-control" ng-model="item.profile.occupation"></input>
 			</td>
 
 
@@ -39,7 +40,8 @@
 				{{tourist.profile.bio}}<br>
 			</td>
 			<td>
-				{{tourist.primary.gender}}<br>
+				{{tourist.profile.gender}}<br>
+				{{tourist.profile.occupation}}
 			</td>
 			<td><button class="btn btn-danger" ng-click="remove(tourist._id)">Remove</button></td>
 			<td><button class="btn btn-warning" ng-click="edit(tourist._id)">Edit</button></td>

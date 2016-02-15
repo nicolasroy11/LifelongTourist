@@ -25,7 +25,7 @@ io.on('connection', function(socket)
 });
 
 // Routes
-// var roomieRoutes = require('./server/routes/roomie.server.routes');
+var genericRoutes = require('./server/routes/generic.server.routes');
 var loginRoutes = require('./server/routes/user.login.routes');
 var dbqueryRoutes = require('./server/routes/DBQuery.server.routes');
 // var roomdbqueryRoutes = require('./server/routes/roomdbquery.server.routes');
@@ -34,7 +34,7 @@ var dbqueryRoutes = require('./server/routes/DBQuery.server.routes');
 // var threadRoutes = require('./server/routes/thread.server.routes');
 
 
-// roomieRoutes(app);
+genericRoutes(app);
 loginRoutes(app);
 dbqueryRoutes(app);
 // roomdbqueryRoutes(app);

@@ -2,102 +2,43 @@
 <section id="roomie-fields">
 <div class="container-fluid" >
 	<div class="row roomie-form">
-		<h3>step 1: your profile</h3>
 			<div class="col-sm-4">
 
+							Image thumbnail: <img scr="imgURL"></img>
 
-
-
-
-
-						<h4>Move in date</h4>
-		    <div class="row" ng-controller="datePickerCtrl">
-		        <div class="col-md-6">
-		            <p class="input-group">
-		              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-		              <span class="input-group-btn">
-		                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-		              </span>
-		            </p>
-		        </div>
-	        </div>
-
-
-
+				<form>
+    				<input type="file" name="photo" file-model="person.profile.photoURL">
+					<div class="photo-upload">
+						<input type="file" file-model="person.profile.photoURL"></input>
+					</div>
+					<button type="submit" class="btn btn-default" ng-click="upload()">Upload</button>
+				</form>
 			</div>
-			Image thumbnail: <img scr="imgURL"></img>
-			<div class="col-sm-4" >
-				<input class="form-control" ng-model="person.meta.email"></input>
-				<input type="text" placeholder="name" class="form-control" ng-model="person.profile.name"></input><br>
 
-				<select ng-model="person.primary.couple">
-					<option value="" disabled selected>Are you sharing a room with someone?</option>
-					<option value="yes">I am sharing a room</option>
-					<option value="no">I live alone</option>
+
+
+
+
+						<div class="col-sm-4">
+				<input class="form-control" ng-model="person.profile.name" placeholder="name"></input>
+				<select ng-model="person.profile.gender">
+					<option value="F" selected>female</option>
+					<option value="M">male</option>
+					<option value="X">other</option>
 				</select><br>
-				<select ng-model="person.primary.gender">
-					<option value="F" selected>Female</option>
-					<option value="M">Male</option>
-				</select><br>
-				<input type="text" name="age" placeholder="age" ng-model="person.primary.age"></input><br>
-				<input type="text" name="hometown" placeholder="hometown" ng-model="person.profile.hometown"></input><br>
-				<select ng-model="person.primary.hours">
-					<option value="" disabled selected>hours</option>
-					<option value="_9to5">9 to 5</option>
-					<option value="evenings">evenings</option>
-					<option value="graveyard">graveyard</option>
-					<option value="mixed">mixed</option>
-				</select>
+				<input  class="form-control" type="text" name="occupation" placeholder="occupation" ng-model="person.profile.occupation"></input><br>
+				<input  class="form-control" type="text" name="hometown" placeholder="hometown" ng-model="person.profile.hometown"></input><br>
 			</div>
 			<div class="col-sm-4">
-				<select class="form-control" ng-model="person.primary.industry">
-					<option value="" disabled selected>industry</option>
-					<option value="food_service">food service</option>
-					<option value="engineering">engineering</option>
-					<option value="trafficking">trafficking</option>
-					<option value="other">other</option>
-				</select><br>
-				<select class="form-control" ng-model="person.primary.pets">
-					<option value="" disabled selected>pets</option>
-					<option value="dogs">none</option>
-					<option value="dogs">dogs</option>
-					<option value="cats">cats</option>
-					<option value="other">other</option>
-				</select><br>
-				<select class="form-control" ng-model="person.primary.smoking">
-					<option value="" disabled selected>smoking</option>
-					<option value="yes">yes, I smoke</option>
-					<option value="no">no, I don't smoke</option>
-					<option value="other">other</option>
-				</select><br>
-				<select class="form-control" ng-model="roomies.stuff">
-					<option value="" disabled selected>how much stuff do you have</option>
-					<option value="nothing">I have nothing</option>
-					<option value="avrerage">I have a dresser and bed</option>
-					<option value="lot">I have a full room set</option>
-				</select><br>
-				<select class="form-control" ng-model="roomies.budget">
-					<option value="" disabled selected>budget</option>
-					<option value="_2">2 dollars</option>
-					<option value="_1000">1000 dollars</option>
-					<option value="more">more</option>
-				</select><br>
-				<select class="form-control" ng-model="roomies.neighborhood">
-					<option value="" disabled selected>neighborhood</option>
-					<option value="bushwick">Bushwick</option>
-					<option value="williamsburg">Williamsburg</option>
-					<option value="brooklyn">Greater Brooklyn</option>
-				</select><br>
+
 			</div>
 			<div class="row roomie-form">
 				<div class="col-sm-8">
-					<label for="bio" class="bio-label">biography</label>
+					<label for="bio" class="bio-label">quick bio</label>
 					<textarea rows="10" class="bio-text form-control" id="bio" ng-model="person.profile.bio"></textarea>
 				</div>
 				<div class="col-sm-4 submit-option">
-					<input type="submit" value="save and finish later"></input>
-<br>OR<br><br>
-					<button class="btn btn-primary" ng-click="updatePrimary()">on to step 2<span class="glyphicon glyphicon-log-in"></span></button>
+					<button class="btn btn-primary" ng-click="updatePrimary()">Update<span class="glyphicon glyphicon-log-in"></span></button>
 				</div>
 			</div>
 

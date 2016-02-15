@@ -52,6 +52,7 @@ var TouristSchema = new Schema(
 		name :
 		{
 	        type: String,
+	        default: 'none',
 	    },
 		gender :
 		{

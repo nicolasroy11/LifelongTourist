@@ -1,7 +1,7 @@
 angular.module('app')
 .controller('authCtrl', 
-['$http', '$scope', '$uibModal', '$log', '$location', 'SessionSvc', '$sessionStorage',
-function($http, $scope, $uibModal, $log, $location, SessionSvc, $sessionStorage)
+['$http', '$scope', '$uibModal', '$log', '$location', 'SessionSvc', '$sessionStorage', '$state',
+function($http, $scope, $uibModal, $log, $location, SessionSvc, $sessionStorage, $state)
 {
 	$scope.animationsEnabled = true;
 	$scope.show = false;
@@ -76,8 +76,8 @@ function($http, $scope, $uibModal, $log, $location, SessionSvc, $sessionStorage)
 
 
 angular.module('app').controller('ModalInstanceCtrl', 
-	['$location', '$http', '$scope', '$uibModalInstance', 'SessionSvc',
-	function($location, $http, $scope, $uibModalInstance, SessionSvc)
+	['$location', '$http', '$scope', '$uibModalInstance', 'SessionSvc', '$state',
+	function($location, $http, $scope, $uibModalInstance, SessionSvc, $state)
 	{
 
 
@@ -102,7 +102,7 @@ angular.module('app').controller('ModalInstanceCtrl',
 				$scope.error = false;
 				$uibModalInstance.close($scope.person);
 				SessionSvc.validate(response.data);
-				window.location.href = '/#/primary';
+				$state.go('home.tourist.profile');
 			}
 			void 0;
 		});

@@ -11,7 +11,6 @@ function($rootScope, $sessionStorage, QuerySvc)
 		void 0;
 		$sessionStorage.trips = user.trips;
 		void 0;
-
 		$rootScope.loggedIn = true;
 	}
 

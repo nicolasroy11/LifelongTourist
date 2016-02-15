@@ -2,19 +2,20 @@
 	<form method="post">
 		<div class="row room-form">
 			<div class="col-sm-4">
-				<h3>step 1: your profile</h3>
-				<div class="photo-upload">
-					<button type="submit">upload</button>
-				</div>
-				<input type="text" ng-model="room.streetAddress" name="streetAddress" placeholder="streetAddress"><br>
+				<h3>step 1: Describe your trip</h3>
 
-				<select ng-model="room.profile.neighborhood">
-					<option value="" disabled selected>Neighborhood</option>
-					<option value="Bushwick">Bushwick</option>
-					<option value="Williamsburg">Williamsburg</option>
-					<option value="Queens">Queens</option>
-				</select><br>
-				<input type="text" ng-model="room.zip" name="zip" placeholder="zip"><br>
+				<h4>From</h4>
+		    <div class="row" ng-controller="datePickerCtrl">
+		        <div class="col-md-6">
+		            <p class="input-group">
+		              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </p>
+		        </div>
+	        </div>
+			<input type="text" ng-model="room.zip" name="zip" placeholder="zip"><br>
 				<select ng-model="room.profile.numOfRooms">
 					<option value="" disabled selected>number of bedrooms</option>
 					<option value="1">1 bedroom</option>

@@ -22,10 +22,12 @@ io.on('connection', function(socket)
 	});
 });
 
+var genericRoutes = require('./server/routes/generic.server.routes');
 var loginRoutes = require('./server/routes/user.login.routes');
 var dbqueryRoutes = require('./server/routes/DBQuery.server.routes');
 
 
+genericRoutes(app);
 loginRoutes(app);
 dbqueryRoutes(app);
 
