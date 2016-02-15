@@ -136,48 +136,5 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 			{value:'3', html:'deal breaker'},
 		];
 		var ageSel = (function(){ var a=[], b=82;while(b--) a[b] = {value: b+18, html: b+18}; return a;})();
-		var parentClass = 'person.match.';
-    	genMatchF = function()
-    	{
-	    	a = 
-	    	[
-				{
-	    			caption : "Do you mind couples?",
-	    			fields : 
-	    			[
-	    				{
-	    					model : $scope.person.match.couple.weight,
-	    					class : 'col-sm-8',
-	    					w : weights
-	    				}
-	    			]
-	    		},
-
-	    		{
-	    			caption : "Have a gender preference?",
-	    			fields : 
-	    			[
-	    				{
-	    					model : $scope.person.match.gender.value, 
-	    					class : 'col-sm-4',
-	    					w :
-	    					[
-	    						{value:'F', html:'female'},
-	    						{value:'M', html:'male'},
-	    					]
-	    				},
-	    				{
-	    					model : $scope.person.match.gender.weight, 
-	    					class : 'col-sm-4',
-	    					w : weights
-	    				}
-	    			]
-	    		},
-			];
-			return a;
-		}
-
-
-
 
 	}]);
