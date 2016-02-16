@@ -2,7 +2,7 @@
 
 This app is meant as a blogging platform for travelers to recount their experiences. It is a refactor of one of my pre-existing MeanJS app, which, for the time being, explains some of the seemingly unrelated code in some of the controllers. I am refactoring this app's modules and controllers to be as lean and reusable in as many contexts as possible so that they can easily be dropped into any future project with - ideally - no needed tweeking. This includes client- and server-side controllers where the CRUD operations are entirely encoded in the arguments passed in by the client, and can be used by very general purpose GETs, POSTs, etc.
 
-To that extent, this project is simultaneously a useful app creation and an all-purpose tool building exercise that will streamline future projects with the creation plug-and-play modules. The current state of the app betrays a few mistakes, like the pollution of  $rootScope with the storage of several global vars. This will soon be corrected with the introduction of proper Angular services.
+To that extent, this project is simultaneously a useful app creation and an all-purpose tool building exercise that will streamline future projects with the creation plug-and-play modules. The current state of the app betrays a few mistakes like the pollution of  $rootScope with the storage of several global vars and a few blatant violations of DRY priciples left over from debugging sessions. This will soon be corrected with a code clean-up and the introduction of proper Angular services.
 
 A short description of the usage flow:
 - A prospective user creates an account
