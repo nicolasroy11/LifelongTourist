@@ -1,0 +1,3 @@
+# lifelongTourists
+
+This app is meant as a blogging platform for travelers to recount their experiences. It is a refactor of one of my pre-existing MeanJS app, which, for the time being, explains some of the seemingly unrelated code in some of the controllers. I am refactoring this app's modules and controllers to be as lean and reusable in as many contexts as possible so that they can easily be dropped into any future app with - ideally - no needed tweeking. This includes client- and server-side controllers where the CRUD operations are entirely encoded in the arguments passed in by the client, and can be used by very general purpose GETs, POSTs, etc.
