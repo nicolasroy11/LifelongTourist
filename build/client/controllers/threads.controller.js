@@ -23,19 +23,20 @@ function($scope, $http, $location, UpdateSvc, QuerySvc, Pagination, $rootScope, 
 			sen = 0;
 			del = 0;
 			dra = 0;
+			var threads = $sessionStorage.user.threads;
 			$scope.pagination.numPages = Math.ceil($rootScope.numThreads/$scope.pagination.perPage);
 			$rootScope.threads = $sessionStorage.threads;
 			for (i in $sessionStorage.threads)
 			{
-				var numOfMsg = $sessionStorage.threads[i].messages.length - 1;
-				var d = new Date($sessionStorage.threads[i].messages[numOfMsg].created);
+				var numOfMsg = threads[i].messages.length - 1;
+				var d = new Date(threads[i].messages[numOfMsg].created);
 				var year = d.getUTCFullYear(),
 					month = d.getUTCMonth() + 1,
 					day = d.getUTCDate();
 				$rootScope.threads[i].lastDate = year + "/" + month + "/" + day;
-				$rootScope.threads[i].id = $sessionStorage.threads[i]._id;
-				$rootScope.threads[i].lastSender = $sessionStorage.threads[i].messages[numOfMsg].senderName;
-				$rootScope.threads[i].lastExcerpt = $sessionStorage.threads[i].messages[numOfMsg].message.substring(0, 21) + '...';
+				$rootScope.threads[i].id = threads[i]._id;
+				$rootScope.threads[i].lastSender = threads[i].messages[numOfMsg].senderName;
+				$rootScope.threads[i].lastExcerpt = threads[i].messages[numOfMsg].message.substring(0, 21) + '...';
 				switch(checkName($rootScope.threads[i].lastSender))
 				{
 				    case 'self':

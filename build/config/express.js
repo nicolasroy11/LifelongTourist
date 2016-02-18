@@ -2,7 +2,7 @@ var express = require('express'),
 	passport = require('passport'),
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
-	db = mongoose.connect('mongodb://127.0.0.1/roomem'),
+	db = mongoose.connect('mongodb://127.0.0.1/lifelongTourists'),
 	flash = require('connect-flash'),	
 	session = require('express-session');
 

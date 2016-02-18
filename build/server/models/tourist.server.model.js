@@ -74,11 +74,11 @@ var TouristSchema = new Schema(
 	        default: 'none',
 		},
 	},
-	fellow:
-	{
+	fellows:
+	[{
 		type: Schema.ObjectId,
     	ref: 'Tourist'
-	}
+	}]
 });
 
 TouristSchema.pre('save', function(next)

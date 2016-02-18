@@ -2,6 +2,90 @@ var mongoose = require('mongoose');
 
 module.exports = function(app)
 {
+	var path = '/db';
+
+	app.get(path + '/:model*', function(req,res)
+	{
+		void 0;
+		var Model = require('../models/' + req.params.model + '.server.model');
+		if (req.query.hasOwnProperty('populate'))
+		{
+			var populate = req.query.populate;
+			delete req.query['populate'];
+		}
+		if (req.query.hasOwnProperty('select'))
+		{
+			var select = req.query.select;
+			delete req.query['select'];
+		}
+		var query = Model;
+		if (req.hasOwnProperty('query'))
+		{
+			query = query.where(req.query);
+			if (req.query.hasOwnProperty('_id'))
+			{
+				query  = query.findOne();
+			}
+			else
+			{
+				query  = query.find();
+			}
+		}
+		else
+		{
+			query  = query.find();
+		}
+		(populate) && (query = query.populate(populate));
+		(select) && (query = query.select(select));
+		query.exec(function(err, doc)
+		{
+			if (err) return res.json(err);
+			if (doc)
+			{
+				return res.json(doc);
+			}
+		})
+	});
+
+
+	app.put(path + '/:model*', function(req,res)
+	{	
+		var model = req.body.model,
+			Model = require('../models/' + model + '.server.model'),
+			id = req.body.filter._id,
+			action = {};
+		void 0;
+		void 0;
+		if (req.body.hasOwnProperty('push'))
+		{
+			action.$push = req.body.push;
+			void 0;
+		}
+		if (req.body.hasOwnProperty('pull'))
+		{
+			action.$pull = req.body.pull;
+			void 0;
+		}
+		Model.findByIdAndUpdate(
+		id,
+		action,
+		{ new: true },
+		function(err, doc)
+		{
+			if (err) return res.json(err);
+			if (doc)
+			{
+				return res.json(doc);
+			}
+		});
+	});
+
+
+
+
+
+
+
 
 	app.get('/get/:model/:id', function(req,res)
 	{

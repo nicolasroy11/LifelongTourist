@@ -40,7 +40,9 @@ module.exports = function(app)
 		void 0;
 		void 0;
 		var _item = require('../models/' + req.params.item + '.server.model');
-		_item.remove({_id: mongoose.Types.ObjectId(id)}, function(err, doc)
+		var tourist = require('../models/tourist.server.model');
+
+		tourist.find({trips: { $all : [mongoose.Types.ObjectId(id)]}}, function(err, doc)
 		{
 			res.json(doc);
 		});

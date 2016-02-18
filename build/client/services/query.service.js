@@ -4,47 +4,92 @@ angular.module('app').factory('QuerySvc',
   {
     var user = null;
 
-    return ({
-      get: get,
-      genericGet: genericGet,
-      post: post,
-      push: push,
-      populate: populate,
-      getArray: getArray
+    return (
+    {
+		get: get,
+		put : put,
+		genericGet: genericGet,
+		post: post,
+		push: push,
+		populate: populate,
+		getArray: getArray
     });
 
-
-function get(type, id)
+function getURL(args)
 {
+	void 0;
+	void 0;
+	var url = '';
 	var defer = $q.defer();
-	var path;
-	if(type === "roomie")
+	switch(args.method.toLowerCase())
 	{
-		path = '/roomie/' + id;
-	}
-	else if(type === "room")
-	{
-		path = '/room/' + id;
-	}
-	else if(type === "thread")
-	{
-		path = '/thread/' + id;
-	}
+		case 'get':
+			(args.hasOwnProperty('path'))&&(url += '/'+args.path);
+			(args.hasOwnProperty('model'))&&(url += '/'+args.model);
+			(args.hasOwnProperty('populate'))&&(url += '?populate='+args.populate);
+			if(args.hasOwnProperty('filter'))
+			{
+				var i = 1,
+					length = Object.keys(args.filter).length;
+				url += (args.hasOwnProperty('populate'))? '&' : '?';
+				for (var key in args.filter)
+				{
+					if (args.filter.hasOwnProperty(key))
+					{
+						url += key + "=" + args.filter[key];
+						(i!==length) && (url += '&');
+						i++;
+					}
+				}
+			}
+			defer.resolve(encodeURI(url));
+			void 0;
+			return defer.promise;
+			break;
 
-	$http.get(path)
-	.success(function(data)
+		case 'put':
+			(args.hasOwnProperty('path'))&&(url += '/'+args.path);
+			(args.hasOwnProperty('model'))&&(url += '/'+args.model);
+			defer.resolve(encodeURI(url));
+			void 0;
+			return defer.promise;
+			break;
+
+		case 'delete':
+			break;
+	}
+}
+
+function get(args)
+{
+	var url = getURL(args).$$state.value;
+	var defer = $q.defer();
+	$http.get(url)
+	.then(function(data)
 	{
-		user = false;
-		defer.resolve(data);
-	})
-	.error(function()
-	{
-		user = false;
-		defer.reject();
+		defer.resolve(data.data);
 	});
 
 	return defer.promise;
 }
+
+function put(args)
+{
+	var defer = $q.defer();
+	var url = '';
+	(args.hasOwnProperty('path'))&&(url += '/'+args.path);
+	(args.hasOwnProperty('model'))&&(url += '/'+args.model);
+	$http.put(url, args)
+	.then(function(res)
+	{
+		defer.resolve(res.data);
+	})
+	return defer.promise;
+}
+
+
+
+
 
 function genericGet(type, params)
 {

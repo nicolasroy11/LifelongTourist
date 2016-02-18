@@ -1,10 +1,8 @@
 angular.module('app').controller('touristCtrl', 
-['$scope', '$http', 'Upload', '$rootScope', 'SessionSvc', '$sessionStorage',
-function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
+['$scope', '$http', 'Upload', '$rootScope', 'SessionSvc', '$sessionStorage', 'QuerySvc',
+function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySvc)
 	{
 		var model = 'tourist';
-
-
 
 		var refresh = function()
 		{
@@ -12,12 +10,24 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 			if ($sessionStorage.session)
 			{
 				var id = $sessionStorage.user._id;
-				$http.get('/get/' + model + '/' + id)
-				.then(function(response)
+				var args = 
 				{
-					$scope.person = response.data;
+					'method': 'GET',
+					'path': 'db',
+					'model': 'tourist',
+					'filter': {
+								'_id': $sessionStorage.user._id,
+								'select': '-password -salt -__v',
+							},
+					'populate': 'trips',
+				};
+				QuerySvc.get(args)
+				.then(function(res)
+				{
+					$scope.person = res;
 					void 0;
-				});
+					void 0;
+				})
 			}
 			else
 			{
@@ -47,6 +57,49 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 				$sessionStorage.user = response.data;
 				refresh();
 			});
+		}
+
+
+		var test_ids = '[56c13c2ba717b631609497f0, 56c3c25eaad201ed68f52201]';
+		$scope.getTest = function()
+		{
+			var args = 
+			{
+				'method': 'GET',
+				'path': 'db',
+				'model': 'tourist',
+				'filter': {
+							'_id': $sessionStorage.user._id,
+							'select': '-password -salt -__v',
+						},
+				'populate': 'trips threads',
+			};
+			QuerySvc.get(args)
+			.then(function(res)
+			{
+				void 0;
+				void 0;
+			})
+		}
+
+		$scope.putTest = function()
+		{
+			var args = 
+			{
+				'method': 'PUT',
+				'pull': {'trips': $sessionStorage.user._id},
+				'path': 'db',
+				'model': 'tourist',
+				'filter': {
+							'_id': $sessionStorage.user._id,
+						},
+			};
+			QuerySvc.put(args)
+			.then(function(res)
+			{
+				void 0;
+				void 0;
+			})
 		}
 
 
@@ -112,16 +165,8 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage)
 	        upload.xhr(function(xhr){
 			  xhr.upload.addEventListener('click', function(){void 0})
 			});
-
     	};
 
-
-    	var weights =
-    	[
-			{value:'1', html:"don't care"},
-			{value:'2', html:'somewhat important'},
-			{value:'3', html:'deal breaker'},
-		];
 		var ageSel = (function(){ var a=[], b=82;while(b--) a[b] = {value: b+18, html: b+18}; return a;})();
 
 	}]);

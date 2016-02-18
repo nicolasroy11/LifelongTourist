@@ -8,7 +8,7 @@ function($scope, $http, uiGmapGoogleMapApi, AddRoomies, $q, $timeout, UpdateSvc,
 		{
 			var current = $sessionStorage.user;
 			var uid = $sessionStorage.user._id;
-			$scope.trips = $sessionStorage.trips;
+			$scope.trips = $sessionStorage.user.trips;
 		}
 
 		$scope.roomies = [];
@@ -74,8 +74,7 @@ function($scope, $http, uiGmapGoogleMapApi, AddRoomies, $q, $timeout, UpdateSvc,
 			}
 			else
 			{
-
-								$scope.trip.fromDate = dateParse($scope.data.dateFrom);
+				$scope.trip.fromDate = dateParse($scope.data.dateFrom);
 				$scope.trip.toDate = dateParse($scope.data.dateTo);
 				void 0;
 				$scope.trip.lister = $sessionStorage.user._id;
@@ -84,20 +83,23 @@ function($scope, $http, uiGmapGoogleMapApi, AddRoomies, $q, $timeout, UpdateSvc,
 				{
 					void 0;
 					void 0;
-
-
-
-
-					var tripPush = { 'trips': response.data._id };
-					QuerySvc.push("tourist", uid, tripPush)
+					var args = 
+					{
+						'method': 'PUT',
+						'path': 'db',
+						'model': 'tourist',
+						'push': {'trips': response.data._id},
+						'filter': {
+									'_id': $sessionStorage.user._id,
+								},
+					};
+					QuerySvc.put(args)
 					.then(function(res)
-			        {
-			        	current = res;
-						$sessionStorage.user = current;
-			        });
-
-
-
+					{
+						void 0;
+						void 0;
+						$sessionStorage.user.trips.push(response.data);
+					})
 				});
 			}
 		} 

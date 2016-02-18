@@ -37,7 +37,7 @@ function($scope, $http, $sessionStorage, $state)
 			$http.delete('/list/' + model + '/' + id)
 			.then(function(response)
 			{
-				refresh();
+				void 0;
 			});
 		}
 
