@@ -1,6 +1,6 @@
 angular.module('app').controller('queryCtrl', 
-['$scope', '$http', '$sessionStorage', '$state',
-function($scope, $http, $sessionStorage, $state)
+['$scope', '$http', '$sessionStorage', '$state', 'QuerySvc',
+function($scope, $http, $sessionStorage, $state, QuerySvc)
 	{
 		void 0;
 		var model = $state.current.model;
@@ -31,13 +31,29 @@ function($scope, $http, $sessionStorage, $state)
 			});
 		}
 
+
 		$scope.remove = function(id)
 		{
-			void 0;
-			$http.delete('/list/' + model + '/' + id)
-			.then(function(response)
+			var args = 
+			{
+				'method': 'delete',
+				'path': 'db',
+				'model': 'tourist',
+				'filter': {'_id': {'$in': [id]}},
+				'then': {
+							'push': {'testArray': {'$each': ['f', 'r']}},
+							'path': 'db',
+							'model': 'tourist',
+							'filter': {
+									},
+						}
+			};
+			QuerySvc.put(args)
+			.then(function(res)
 			{
 				void 0;
+				void 0;
+				refresh();
 			});
 		}
 
@@ -61,7 +77,6 @@ function($scope, $http, $sessionStorage, $state)
 			.then(function(response)
 			{
 				void 0;
-				$sessionStorage.user = response.data;
 				refresh();
 			});
 		}

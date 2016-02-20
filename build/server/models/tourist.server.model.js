@@ -78,6 +78,10 @@ var TouristSchema = new Schema(
 	[{
 		type: Schema.ObjectId,
     	ref: 'Tourist'
+	}],
+	testArray:
+	[{
+		type: String
 	}]
 });
 

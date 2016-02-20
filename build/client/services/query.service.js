@@ -67,14 +67,30 @@ function get(args)
 	$http.get(url)
 	.then(function(data)
 	{
-		defer.resolve(data.data);
+		defer.resolve(data);
 	});
 
 	return defer.promise;
 }
 
+function post(args)
+{
+	var defer = $q.defer();
+	var url = '';
+	(args.hasOwnProperty('path'))&&(url += '/'+args.path);
+	(args.hasOwnProperty('model'))&&(url += '/'+args.model);
+	$http.post(url, args)
+	.then(function(data)
+	{
+		defer.resolve(data);
+	})
+	return defer.promise;
+}
+
 function put(args)
 {
+	void 0;
+	void 0;
 	var defer = $q.defer();
 	var url = '';
 	(args.hasOwnProperty('path'))&&(url += '/'+args.path);
@@ -82,10 +98,11 @@ function put(args)
 	$http.put(url, args)
 	.then(function(res)
 	{
-		defer.resolve(res.data);
+		defer.resolve(res);
 	})
 	return defer.promise;
 }
+
 
 
 
@@ -125,37 +142,8 @@ function genericGet(type, params)
 	return defer.promise;
 }
 
-function post(type, object)
-{
-	var defer = $q.defer();
-	var path;
-	if(type === "roomie")
-	{
-		path = '/roomie/';
-	}
-	else if(type === "room")
-	{
-		path = '/room/';
-	}
-	else if(type === "message")
-	{
-		path = '/message/';
-	}
 
-	$http.post(path, object)
-	.success(function(data)
-	{
-		user = false;
-		defer.resolve(data);
-	})
-	.error(function()
-	{
-		user = false;
-		defer.reject();
-	});
 
-	return defer.promise;
-}
 
 function push(model, id, args)
 {

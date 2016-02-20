@@ -87,11 +87,10 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySv
 			var args = 
 			{
 				'method': 'PUT',
-				'pull': {'trips': $sessionStorage.user._id},
+				'push': {'testArray': {'$each': ['y', 'a']}},
 				'path': 'db',
 				'model': 'tourist',
 				'filter': {
-							'_id': $sessionStorage.user._id,
 						},
 			};
 			QuerySvc.put(args)
@@ -100,6 +99,56 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySv
 				void 0;
 				void 0;
 			})
+		}
+
+		$scope.postTest = function()
+		{
+			var args = 
+			{
+				'method': 'POST',
+				'path': 'db',
+				'model': 'tourist',
+				'data': $scope.person,
+				'then': {
+							'model': 'tourist',
+							'field': 'testArray',
+							'action': 'push',
+							'arg': 'testPush'
+				}
+			};
+			QuerySvc.post(args)
+			.then(function(res)
+			{
+				void 0;
+				void 0;
+			})
+		}
+
+		$scope.remove = function(id)
+		{
+			var args = 
+			{
+				'method': 'delete',
+				'path': 'db',
+				'model': 'tourist',
+				'data': $scope.person,
+				'filter': {
+							'_id': id,
+						},
+				'then': {
+							'model': 'tourist',
+							'field': 'testArray',
+							'action': 'push',
+							'arg': 'testPush'
+						}
+			};
+			QuerySvc.put(args)
+			.then(function(res)
+			{
+				void 0;
+				void 0;
+				refresh();
+			});
 		}
 
 
