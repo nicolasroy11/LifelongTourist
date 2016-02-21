@@ -24,7 +24,7 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySv
 				QuerySvc.get(args)
 				.then(function(res)
 				{
-					$scope.person = res;
+					$scope.person = res.data;
 					void 0;
 					void 0;
 				})
@@ -46,17 +46,24 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySv
 		$scope.updatePrimary = function()
 		{
 			var id = $sessionStorage.user._id;
-			void 0;
-			void 0;
-			void 0;
-			var update = {'model' : 'tourist', 'data': {'profile' : $scope.person.profile}}
-			$http.put('/update/' + id, update)
-			.then(function(response)
+			var args = 
+			{
+				'method': 'PUT',
+				'update': {'profile': $scope.person.profile},
+				'path': 'db',
+				'model': model,
+				'filter': {
+							'_id': id,
+						},
+			};
+			QuerySvc.put(args)
+			.then(function(res)
 			{
 				void 0;
-				$sessionStorage.user = response.data;
+				void 0;
+				$sessionStorage.user = res.data;
 				refresh();
-			});
+			})
 		}
 
 
@@ -131,7 +138,6 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySv
 				'method': 'delete',
 				'path': 'db',
 				'model': 'tourist',
-				'data': $scope.person,
 				'filter': {
 							'_id': id,
 						},

@@ -7,15 +7,14 @@
 					<div class="col-sm-1">
 					</div>
 					<div class="col-sm-2">
-						<h5 class="list-group-item-heading">{{ trip.title }}</h5>
+						<h5 class="list-group-item-heading">{{ trip.profile.title }}</h5>
 					</div>
 					<div class="col-sm-1">
 						<img class="thread-thumbnail" src="../img/anon.jpeg" alt="Chania">
 					</div>
-					<div class="col-sm-4">
-						<h5 class="list-group-item-heading">{{ trip.lastSender }}</h5>
-					</div>
 				</div>
+				<td><button class="btn btn-danger" ng-click="remove(trip)">Remove</button></td>
+				<td><button class="btn btn-warning" ng-click="edit(trip._id)">Edit</button></td>
 			</a>
 			</div>
 		<ul class="pagination">

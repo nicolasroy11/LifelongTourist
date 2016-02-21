@@ -15,7 +15,6 @@
 				<input class="form-control" ng-model="item.title"></input>
 			</td>
 			<td>
-				<input class="form-control" ng-model="item.lister"></input>
 			</td>
 
 						<td>
@@ -34,25 +33,25 @@
 		</tr>
 		<tr ng-repeat="trip in list">
 			<td>
-				title: {{trip.title}}
+				title: {{trip.profile.title}}
 			</td>
 			<td>
 				trip ID: {{trip._id}}<br>
 				lister ID: {{trip.lister}}<br>
 			</td>
 			<td>
-				{{trip.fromDate}}<br>
-				{{trip.toDate}}
+				{{trip.profile.fromDate}}<br>
+				{{trip.profile.toDate}}
 			</td>
 			<td>
-				{{trip.desc}}
+				{{trip.profile.desc}}
 			</td>
 			<td>
 				{{trip.destinations}}<br>
 			</td>
 
 
-			<td><button class="btn btn-danger" ng-click="remove(trip._id)">Remove</button></td>
+			<td><button class="btn btn-danger" ng-click="remove(trip)">Remove</button></td>
 			<td><button class="btn btn-warning" ng-click="edit(trip._id)">Edit</button></td>
 		</tr>
 	</tbody>

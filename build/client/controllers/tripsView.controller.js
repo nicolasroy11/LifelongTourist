@@ -12,7 +12,24 @@ function($scope, $http, uiGmapGoogleMapApi, $rootScope, QuerySvc, $sessionStorag
 		{
 			void 0;
 			var uid = $sessionStorage.user._id;
-			$scope.trips = $sessionStorage.user.trips;
+			var args = 
+				{
+					'method': 'GET',
+					'path': 'db',
+					'model': 'tourist',
+					'filter': { '_id' : uid,
+								'select': 'trips'
+							},
+					'populate': 'trips',
+				};
+			QuerySvc.get(args)
+			.then(function(res)
+			{
+				$scope.trips = res.data.trips;
+				void 0;
+				void 0;
+			});
+
 		}
 		else
 		{
@@ -20,5 +37,59 @@ function($scope, $http, uiGmapGoogleMapApi, $rootScope, QuerySvc, $sessionStorag
 		}
 	};
 	refresh();
+
+	$scope.remove = function(item)
+	{
+		void 0;
+		void 0;
+		var args = 
+			{
+				'method': 'delete',
+				'path': 'db',
+				'model': model,
+				'filter': {'_id': {'$in': [item._id]}},
+			};
+		QuerySvc.put(args)
+		.then(function(res)
+		{
+			refresh();
+			void 0;
+			void 0;
+			var args = 
+			{
+				'method': 'PUT',
+				'pull': {'trips': {'$in': [item._id]}},
+				'path': 'db',
+				'model': 'tourist',
+				'filter': {'_id': { '$in': [item.lister]}},
+			};
+			QuerySvc.put(args)
+			.then(function(res)
+			{
+				refresh();
+				void 0;
+				void 0;
+			});
+		});
+	}
+
+	$scope.edit = function(id)
+	{
+		var args = 
+			{
+				'method': 'GET',
+				'path': 'db',
+				'model': model,
+				'filter': {"_id": id},
+			};
+		QuerySvc.get(args)
+		.then(function(res)
+		{
+			$scope.item = res.data;
+			void 0;
+			void 0;
+		});
+	}
+
 
 	}]);

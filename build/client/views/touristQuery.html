@@ -4,6 +4,7 @@
 		<th>Name<br>Hometown<br>Bio</th>
 		<th>Gender<br>Occupation</th>
 		<th>Test Array</th>
+		<th>Trips</th>
 
 				<th>Action</th>
 		<th>&nbsp;</th>
@@ -47,9 +48,10 @@
 				{{tourist.profile.occupation}}
 			</td>
 			<td>
-				{{tourist.testArray}}
+				{{tourist.testArray}}<br>
+				{{tourist.trips}}
 			</td>
-			<td><button class="btn btn-danger" ng-click="remove(tourist._id)">Delete</button></td>
+			<td><button class="btn btn-danger" ng-click="remove(tourist)">Delete</button></td>
 			<td><button class="btn btn-warning" ng-click="edit(tourist._id)">Edit</button></td>
 		</tr>
 	</tbody>

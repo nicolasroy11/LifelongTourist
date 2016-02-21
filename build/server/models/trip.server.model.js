@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
-
 var TripSchema = new Schema(
 {
 	lister:
@@ -9,27 +7,30 @@ var TripSchema = new Schema(
     	type: Schema.ObjectId,
     	ref: 'Tourist'
     },
+    profile:
+    {
+        fromDate:
+        {
+            type: Date
+        },
+        toDate:
+        {
+            type: Date
+        },
+        title:
+        {
+            type: String
+        },
+        desc:
+        {
+            type: String
+        }
+    },
 	tourists:
     [{
     	type: Schema.ObjectId,
     	ref: 'Tourist'
     }],
-    fromDate:
-	{
-        type: Date
-    },
-    toDate:
-	{
-        type: Date
-    },
-    title:
-    {
-        type: String
-    },
-    desc:
-    {
-    	type: String
-    },
 	legs: 
 	[{
     	type: Schema.ObjectId,

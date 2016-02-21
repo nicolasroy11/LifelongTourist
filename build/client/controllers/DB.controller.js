@@ -7,13 +7,19 @@ function($scope, $http, $sessionStorage, $state, QuerySvc)
 		void 0;
 		var refresh = function()
 		{
-			$http.get('/list/' + model)
-			.then(function(response)
+			var args = 
+				{
+					'method': 'GET',
+					'path': 'db',
+					'model': model,
+					'filter': {},
+				};
+			QuerySvc.get(args)
+			.then(function(res)
 			{
+				$scope.list = res.data;
 				void 0;
 				void 0;
-				$scope.list = response.data;
-				$scope.item = '';
 			});
 		};
 		refresh();
@@ -21,49 +27,77 @@ function($scope, $http, $sessionStorage, $state, QuerySvc)
 
 		$scope.add = function()
 		{
-			void 0;
-			$http.post('/list', {"item": model, "data": $scope.item})
-			.then(function(response)
-			{
-				void 0;
-				sessionStorage.setItem('userID', response.data._id);
-				refresh();
-			});
-		}
-
-
-		$scope.remove = function(id)
-		{
 			var args = 
-			{
-				'method': 'delete',
-				'path': 'db',
-				'model': 'tourist',
-				'filter': {'_id': {'$in': [id]}},
-				'then': {
-							'push': {'testArray': {'$each': ['f', 'r']}},
-							'path': 'db',
-							'model': 'tourist',
-							'filter': {
-									},
-						}
-			};
-			QuerySvc.put(args)
+				{
+					'method': 'POST',
+					'path': 'db',
+					'model': model,
+					'data': $scope.item,
+				};
+			QuerySvc.post(args)
 			.then(function(res)
 			{
 				void 0;
 				void 0;
 				refresh();
+			})
+		}
+
+		$scope.remove = function(item)
+		{
+			void 0
+			void 0
+			var args = 
+				{
+					'method': 'delete',
+					'path': 'db',
+					'model': model,
+					'filter': {'_id': {'$in': [item._id]}},
+				};
+			QuerySvc.put(args)
+			.then(function(res)
+			{
+				refresh();
+				void 0;
+				void 0;
+				var pulled, alt_model, alt_id;
+				if (model === 'trip')
+				{
+					alt_model = 'tourist';
+					alt_id = item.lister;
+					pulled = {'trips': {'$in': [item._id]}};
+				}
+				var args = 
+				{
+					'method': 'PUT',
+					'pull': pulled,
+					'path': 'db',
+					'model': alt_model,
+					'filter': {'_id': { '$in': [alt_id]}},
+				};
+				QuerySvc.put(args)
+				.then(function(res)
+				{
+					refresh();
+					void 0;
+					void 0;
+				});
 			});
 		}
 
 		$scope.edit = function(id)
 		{
-			void 0;
-			$http.get('/list/' + model + '/' + id)
-			.then(function(response)
+			var args = 
+				{
+					'method': 'GET',
+					'path': 'db',
+					'model': model,
+					'filter': {"_id": id},
+				};
+			QuerySvc.get(args)
+			.then(function(res)
 			{
-				$scope.item = response.data;
+				$scope.item = res.data;
 				void 0;
 				void 0;
 			});
@@ -71,13 +105,24 @@ function($scope, $http, $sessionStorage, $state, QuerySvc)
 
 		$scope.update = function()
 		{
-			void 0;
-			var update = {'model' : 'tourist', 'data': {'profile' : $scope.item.profile}}
-			$http.put('/update/' + $scope.item._id, update)
-			.then(function(response)
+
+
+			var args = 
 			{
-				void 0;
+				'method': 'PUT',
+				'update': {'profile': $scope.item},
+				'path': 'db',
+				'model': model,
+				'filter': {
+							'_id': $scope.item._id,
+						},
+			};
+			QuerySvc.put(args)
+			.then(function(res)
+			{
 				refresh();
+				void 0;
+				void 0;
 			});
 		}
 
