@@ -3,20 +3,19 @@ angular.module('app').controller('touristCtrl',
 function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySvc)
 	{
 		var model = 'tourist';
-
+		var id = $sessionStorage.user._id;
 		var refresh = function()
 		{
 			void 0;
 			if ($sessionStorage.session)
 			{
-				var id = $sessionStorage.user._id;
 				var args = 
 				{
 					'method': 'GET',
 					'path': 'db',
 					'model': 'tourist',
 					'filter': {
-								'_id': $sessionStorage.user._id,
+								'_id': id,
 								'select': '-password -salt -__v',
 							},
 					'populate': 'trips',
@@ -25,6 +24,7 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySv
 				.then(function(res)
 				{
 					$scope.person = res.data;
+					$sessionStorage.user = res.data;
 					void 0;
 					void 0;
 				})
@@ -45,7 +45,6 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySv
 
 		$scope.updatePrimary = function()
 		{
-			var id = $sessionStorage.user._id;
 			var args = 
 			{
 				'method': 'PUT',
@@ -61,7 +60,6 @@ function($scope, $http, Upload, $rootScope, SessionSvc, $sessionStorage, QuerySv
 			{
 				void 0;
 				void 0;
-				$sessionStorage.user = res.data;
 				refresh();
 			})
 		}
