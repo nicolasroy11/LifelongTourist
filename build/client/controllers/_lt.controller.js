@@ -1,4 +1,5 @@
-var app = angular.module('app',
+angular
+.module('app',
 	['ui.router',
 	'uiGmapgoogle-maps',
 	'ngFileUpload', 
@@ -8,9 +9,9 @@ var app = angular.module('app',
 	'btford.socket-io',
 	'ngStorage',
 	'ngResource'
-	]);
+	])
 
-app.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) 
+.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) 
 {
 
 	$stateProvider

@@ -33,12 +33,6 @@ function($scope, $http, uiGmapGoogleMapApi, QuerySvc, $sessionStorage)
 		$scope.availRooms.push({ 'price' : '' });
 	};
 
-	$scope.removeAvailRoom = function(index)
-	{
-		void 0;
-		$scope.availRooms.splice(index, 1);
-	};
-
 	$scope.data = {};
 	$scope.trip = {};
 	$scope.data.dateFrom = new Date();
@@ -107,6 +101,7 @@ function($scope, $http, uiGmapGoogleMapApi, QuerySvc, $sessionStorage)
 					void 0;
 					void 0;
 					$sessionStorage.user.trips.push(res1.data);
+					$scope.trip = '';
 				})
 			})
 		}

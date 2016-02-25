@@ -31,28 +31,14 @@
 						<td><button class="btn btn-primary" ng-click="add()">Add item</button></td>
 			<td><button class="btn btn-info" ng-click="update()">Update</button></td>
 		</tr>
-		<tr ng-repeat="trip in list">
-			<td>
-				title: {{trip.profile.title}}
-			</td>
-			<td>
-				trip ID: {{trip._id}}<br>
-				lister ID: {{trip.lister}}<br>
-			</td>
-			<td>
-				{{trip.profile.fromDate}}<br>
-				{{trip.profile.toDate}}
-			</td>
-			<td>
-				{{trip.profile.desc}}
-			</td>
-			<td>
-				{{trip.destinations}}<br>
-			</td>
+			<test-dir ng-repeat="trip in list" 
+				var1='{{trip.profile.title}}'
+				var2='{{trip.profile._id}}'>
+			</test-dir>
 
 
-			<td><button class="btn btn-danger" ng-click="remove(trip)">Remove</button></td>
-			<td><button class="btn btn-warning" ng-click="edit(trip._id)">Edit</button></td>
-		</tr>
+
+
+					</tr>
 	</tbody>
 </table>
