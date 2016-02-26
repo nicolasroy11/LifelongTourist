@@ -1,4 +1,5 @@
-app.controller("mapController", function($scope, uiGmapGoogleMapApi) {
+angular.module('app')
+.controller("mapController", function($scope, uiGmapGoogleMapApi) {
 
   var areaLat      = 40.1451,
       areaLng      = -99.6680,

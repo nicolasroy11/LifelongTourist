@@ -1,4 +1,6 @@
-angular.module('app').controller('queryCtrl', 
+angular
+.module('app')
+.controller('queryCtrl', 
 ['$scope', '$http', '$sessionStorage', '$state', 'QuerySvc',
 function($scope, $http, $sessionStorage, $state, QuerySvc)
 	{
